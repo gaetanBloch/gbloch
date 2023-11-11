@@ -1,0 +1,17 @@
+# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+.angular
+
+.idea
+node_modules
+*.iml
+*.log
+.gitignore
+.git
+package-lock.json
+
+/.nx/cache
+
+build
+cache
