@@ -1,51 +1,100 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='description' content='Astro description' />
+  <meta content='width=device-width, initial-scale=1' name='viewport' />
+  <link href='/favicon.ico' rel='icon' />
+  <link href='https://fonts.gstatic.com' rel='preconnect'>
+  <!--Logo Font Main-->
+  <link href='https://fonts.googleapis.com/css2?family=Audiowide&display=swap'
+        rel='stylesheet'>
+  <!--Primary Font-->
+  <link
+    href='https://fonts.googleapis.com/css2?family=Audiowide&family=Lobster&family=Open+Sans:wght@300&display=swap'
+    rel='stylesheet'>
+  <!--Writing Font-->
+  <link
+    href='https://fonts.googleapis.com/css2?family=Audiowide&family=Lobster&display=swap'
+    rel='stylesheet'>
+  <meta name='generator' content={ Astro.generator } />
+  <title> {title} </title>
+</head>
+<body>
+<slot />
+</body>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+<style is:global lang='scss'>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  :root {
+    --primary: #d90429;
+    --primary-bright: #e13654;
+    --primary-light: #e8687f;
+    --primary-lighter: #f09ba9;
+    --primary-lightest: #f7cdd4;
+    --secondary: #465771;
+    --secondary-bright: #708ab4;
+    --secondary-light: #8cade1;
+    --secondary-lighter: #baceed;
+    --secondary-lightest: #dde6f6;
+    --neutral: #717a8b;
+    --neutral-bright: #8d99ae;
+    --neutral-light: #afb8c6;
+    --neutral-lighter: #c6ccd7;
+    --neutral-lightest: #e8ebef;
+    --background: rgb(237, 242, 244);
+    --background-dark: #2b2d42;
+    --white: #ffffff;
+    --black: #000000;
+    --black-background: rgba(0, 0, 0, 0.3);
+    --black-background-dark: rgba(0, 0, 0, 0.6);
+    --backdrop-color: rgba(237, 242, 244, 0.9);
+    --transparent: rgba(255, 255, 255, 0);
+
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+        45deg,
+        rgb(var(--accent)),
+        rgb(var(--accent-light)) 30%,
+        white 60%
+    );
+
+    @apply h-screen;
+  }
+
+  html {
+    font-family: system-ui, sans-serif;
+    background: #13151a;
+    background-size: 224px;
+  }
+
+  body {
+    @apply font-primary text-secondary bg-background dark:text-secondary-lighter
+    dark:bg-background-dark box-border h-screen;
+    transition: color ease .5s, background-color ease .5s;
+  }
+
+  code {
+    font-family: Menlo,
+    Monaco,
+    Lucida Console,
+    Liberation Mono,
+    DejaVu Sans Mono,
+    Bitstream Vera Sans Mono,
+    Courier New,
+    monospace;
+  }
 </style>

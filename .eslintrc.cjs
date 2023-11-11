@@ -18,7 +18,7 @@ module.exports = {
         "@typescript-eslint"
     ],
     "rules": {
-      "semicolon": ["error", "always"],
-      "quotes": ["error", "double"],
+      // "semicolon": ["error", "always"],
+      // "quotes": ["error", "single"],
     }
 }
