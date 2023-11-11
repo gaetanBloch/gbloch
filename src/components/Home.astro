@@ -1,0 +1,46 @@
+---
+
+---
+
+<div class='home flex flex-col'>
+  <span
+    class='font-bold text-sm text-secondary-light sm:text-lg md:text-xl md:mt-5 lg:mt-20'>
+    Hello there, my name is
+  </span>
+  <span class='mb-2 font-black text-4xl sm:text-6xl md:mb-5 lg:text-8xl'>
+    Gaëtan Bloch
+  </span>
+  <span
+    class='font-black text-secondary-light text-xl sm:text-3xl lg:text-5xl mb-3'>
+    Polyglot Software Engineer
+  </span>
+  <span class='font-black text-secondary-light text-xl sm:text-3xl lg:text-5xl mb-2'>
+    International Speaker
+  </span>
+  <span class='font-black text-secondary-light text-xl sm:text-3xl lg:text-5xl'>
+    Book Author
+  </span>
+</div>
+
+<style lang='scss'>
+  .home {
+    @apply flex flex-col;
+
+    > * {
+      @apply inline-flex justify-center md:justify-start md:px-32 lg:px-52 xl:px-80;
+    }
+
+    &__greetings {
+      @apply font-bold text-sm text-secondary-light sm:text-lg md:text-xl md:mt-5 lg:mt-20;
+    }
+
+    &__name {
+      @apply mb-2 font-black text-4xl sm:text-6xl md:mb-5 lg:text-8xl;
+    }
+
+    &__position {
+      @apply font-black text-secondary-light text-xl sm:text-3xl lg:text-5xl;
+    }
+
+  }
+</style>
