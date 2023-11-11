@@ -1,6 +1,7 @@
 /** @type {import("tailwindcss").Config} */
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  darkMode: "class", // or 'media' or 'class'
   theme: {
     colors: {
       primary: "var(--primary)",
@@ -33,6 +34,8 @@ export default {
       writing: ["Lobster", "cursive"],
     },
   },
-  plugins: [],
+  plugins: [
+
+  ],
 };
 

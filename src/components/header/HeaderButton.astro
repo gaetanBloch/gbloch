@@ -1,0 +1,24 @@
+---
+
+
+---
+
+<button
+  class='text-primary border rounded dark:text-primary-light pt-1 pb-1 pr-2 pl-2 select-none focus:outline-none'>
+Curriculum
+</button>
+
+<style lang='scss'>
+  $animation: ease-in-out;
+  $duration: .4s;
+  $transitionButton: border-color $animation $duration, color $animation $duration, background-color $animation $duration;
+  $transitionIcon: color $animation $duration, transform $animation $duration;
+
+  button {
+    transition: $transitionButton;
+    &:hover, &:active, &:focus {
+      @apply bg-primary dark:bg-primary-light text-background border-primary dark:border-primary-light;
+    }
+  }
+
+</style>

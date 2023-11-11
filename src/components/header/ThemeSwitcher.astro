@@ -1,0 +1,88 @@
+---
+
+
+---
+
+<div class='theme-switcher switched'>
+  <div class='switched'></div>
+</div>
+
+<style lang='scss'>
+  $animation: ease-in-out;
+  $duration: .4s;
+  $transition: background-color $animation $duration,
+  box-shadow $animation $duration,
+  transform $animation $duration;
+  $shadow: 6px;
+  $shadow1: 18px;
+  $shadow2: -18px;
+  $shadow3: 13px;
+  $shadow4: -13px;
+  $shadow-color: var(--secondary-light);
+  $shadow-margin: -3px;
+
+  @mixin box-shadow($color) {
+    box-shadow: 0 $shadow2 0 $color,
+    0 $shadow1 0 $color,
+    $shadow1 0 0 $color,
+    $shadow2 0 0 $color,
+    $shadow3 $shadow3 0 $color,
+    $shadow4 $shadow3 0 $color,
+    $shadow3 $shadow4 0 $color,
+    $shadow4 $shadow4 0 $color;
+  }
+
+  .theme-switcher {
+    @apply outline-none inline-flex relative border-secondary border-2 bg-secondary border-solid rounded-full;
+    width: 24px;
+    height: 24px;
+    transition: all .5s ease;
+
+    &:hover {
+      @apply cursor-pointer;
+    }
+
+    &.switched {
+      @apply bg-secondary-light border-secondary-light;
+      transform: scale(0.7);
+
+      &:hover {
+        &:after {
+          @include box-shadow($shadow-color);
+        }
+      }
+
+      &:after {
+        @apply absolute top-1/2 left-1/2 rounded-full;
+        @include box-shadow($shadow-color);
+        content: "";
+        width: $shadow;
+        height: $shadow;
+        margin: $shadow-margin 0 0 $shadow-margin;
+        transition: all .5s ease;
+      }
+    }
+
+    div {
+      @apply absolute opacity-100 bg-background;
+      right: -13px;
+      top: -8px;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      transform: translate(0, 0);
+      transition: background-color .5s ease, transform .5s ease;
+
+      &.switched {
+        @apply bg-background-dark;
+        transform: translate(22px, -22px);
+      }
+    }
+  }
+</style>
+
+<script>
+  const root = window.document.documentElement;
+  root.classList.remove("light");
+  root.classList.add("dark");
+</script>

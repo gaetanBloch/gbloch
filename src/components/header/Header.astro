@@ -1,0 +1,36 @@
+---
+import Logo from "./Logo.astro";
+import HeaderLinks from "./HeaderLinks.astro";
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+---
+
+<header class='header px-5 pt-5 pb-5 grid md:px-14 lg:px-28 md:pb-10 md:pt-10'>
+    <span class='justify-self-start self-center relative z-20'>
+      <Logo />
+    </span>
+  <span class='justify-self-end self-center space-x-4 lg:space-x-6 z-20'>
+      <HeaderLinks />
+    <span class='inline-flex align-middle select-none'>
+      <ThemeSwitcher />
+    </span>
+    </span>
+</header>
+
+<style lang='scss'>
+  $transition-function: ease;
+  $transition-duration: .5s;
+  $transition: backdrop-filter $transition-function $transition-duration,
+  opacity $transition-function $transition-duration,
+  font-weight $transition-function $transition-duration,
+  background-color $transition-function $transition-duration;
+
+  .header {
+    grid-template-columns: auto 1fr;
+
+    &-left {
+      .MenuMode {
+        @apply absolute -top-3 -right-7
+      }
+    }
+  }
+</style>
