@@ -14,6 +14,12 @@ importers:
       '@astrojs/tailwind':
         specifier: ^5.0.2
         version: 5.0.2(astro@3.5.2)(tailwindcss@3.3.5)
+      '@fontsource/audiowide':
+        specifier: ^5.0.17
+        version: 5.0.17
+      '@fontsource/twinkle-star':
+        specifier: ^5.0.17
+        version: 5.0.17
       astro:
         specifier: ^3.5.2
         version: 3.5.2(sass@1.69.5)(typescript@5.2.2)
@@ -837,6 +843,14 @@ packages:
     resolution: {integrity: sha512-Kn7K8dx/5U6+cT1yEhpX1w4PCSg0M+XyRILPgvwcEBjerFWCwQj5sbr3/VmxqV0JGHCBCzyd6LxypEuehypY1w==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@fontsource/audiowide@5.0.17:
+    resolution: {integrity: sha512-EBZU6P/sKVnmEhdwR4qLRne5OlY1hqY5rLuarutHESPFeCqNOkR6elFAOn/cnRdnt5Ks962EKccS5zL5ffZITA==}
+    dev: false
+
+  /@fontsource/twinkle-star@5.0.17:
+    resolution: {integrity: sha512-Y8geTc67IQ0YXrSLqAqFoyT8bCx3CaY/0FaWAOXEBEpq2hgkuti5DtpHo8v2kIjGTTNcbsP9zbVHARL4cGlrJA==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.13:
     resolution: {integrity: sha512-JSBDMiDKSzQVngfRjOdFXgFfklaXI4K9nLF49Auh21lmBWRLIK3+xTErTWD4KU54pb6coM6ESE7Awz/FNU3zgQ==}
