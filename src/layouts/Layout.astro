@@ -13,18 +13,6 @@ const { title } = Astro.props;
   <meta name='description' content='Astro description' />
   <meta content='width=device-width, initial-scale=1' name='viewport' />
   <link href='/favicon.ico' rel='icon' />
-  <link href='https://fonts.gstatic.com' rel='preconnect'>
-  <!--Logo Font Main-->
-  <link href='https://fonts.googleapis.com/css2?family=Audiowide&display=swap'
-        rel='stylesheet'>
-  <!--Primary Font-->
-  <link
-    href='https://fonts.googleapis.com/css2?family=Audiowide&family=Lobster&family=Open+Sans:wght@300&display=swap'
-    rel='stylesheet'>
-  <!--Writing Font-->
-  <link
-    href='https://fonts.googleapis.com/css2?family=Audiowide&family=Lobster&display=swap'
-    rel='stylesheet'>
   <meta name='generator' content={ Astro.generator } />
   <title> { title } </title>
 </head>
@@ -77,15 +65,8 @@ const { title } = Astro.props;
     @apply h-screen;
   }
 
-  /*html {*/
-  /*  font-family: system-ui, sans-serif;*/
-  /*  background: #13151a;*/
-  /*  background-size: 224px;*/
-  /*}*/
 
   body {
-    /*@apply font-primary text-secondary bg-background dark:text-secondary-lighter*/
-    /*dark:bg-background-dark box-border h-screen;*/
     transition: color ease .5s, background-color ease .5s;
   }
 
@@ -99,4 +80,29 @@ const { title } = Astro.props;
     Courier New,
     monospace;
   }
+
+  @font-face {
+    font-family: 'Audiowide';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/Audiowide-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Lobster';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/LobsterTwo-Regular.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('/fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+  }
+
 </style>
