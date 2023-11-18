@@ -11,8 +11,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/alpinejs": "^0.3.1",
     "@astrojs/netlify": "^3.0.4",
     "@astrojs/tailwind": "^5.0.2",
+    "@types/alpinejs": "^3.13.5",
+    "alpinejs": "^3.13.2",
     "astro": "^3.5.2",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",

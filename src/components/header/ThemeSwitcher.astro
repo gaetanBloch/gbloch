@@ -1,11 +1,18 @@
 ---
-
-
 ---
-
-<div class='theme-switcher switched'>
-  <div class='switched'></div>
+<div x-data='{ switched: false, theme: "dark" }'>
+  <div :class='"theme-switcher " + (switched ? "switched" : "")'
+       @click='
+    switched = !switched;
+    const theme = switched ? "dark" : "light";
+    const root = window.document.documentElement;
+    root.classList.remove(theme === "dark" ? "light" : "dark");
+    root.classList.add(theme);'
+  >
+    <div :class='switched ? "switched" : ""'></div>
+  </div>
 </div>
+
 
 <style lang='scss'>
   $animation: ease-in-out;
@@ -82,7 +89,16 @@
 </style>
 
 <script>
-  const root = window.document.documentElement;
-  root.classList.remove("light");
-  root.classList.add("dark");
+  import Alpine from "alpinejs";
+
+  window.Alpine = Alpine;
+  Alpine.start();
+
+  function changeTheme(switched: boolean) {
+    const theme = switched ? "dark" : "light";
+    const root = window.document.documentElement;
+    root.classList.remove(theme === "dark" ? "light" : "dark");
+    root.classList.add(theme);
+  }
+
 </script>

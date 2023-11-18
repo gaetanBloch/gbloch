@@ -5,6 +5,7 @@ import postcssImport from "postcss-import";
 import postcssNesting from "tailwindcss/nesting";
 import autoprefixer from "autoprefixer";
 import netlify from '@astrojs/netlify/functions';
+import alpine from '@astrojs/alpinejs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -12,6 +13,7 @@ export default defineConfig({
   adapter: netlify(),
   integrations: [
     tailwind(),
+    alpine(),
   ],
   vite: {
     css: {
