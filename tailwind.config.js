@@ -4,7 +4,7 @@ import tailwind from "@astrojs/tailwind";
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   darkMode: "class", // or 'media' or 'class'
-  integrations: [tailwind({applyBaseStyles: false})],
+  integrations: [tailwind({ applyBaseStyles: false })],
   theme: {
     colors: {
       primary: "var(--primary)",
@@ -31,18 +31,11 @@ export default {
       "backdrop-color": "var(--backdrop-color)",
       transparent: "var(--transparent)",
     },
-    extend: {
-      fontFamily: {
-        logo: ["Audiowide", "cursive"],
-        primary: ["Open Sans", "sans-serif"],
-        writing: ["Lobster", "cursive"],
-      },
+    fontFamily: {
+      logo: ["Audiowide", "cursive"],
+      primary: ["Open Sans", "sans-serif"],
+      writing: ["Lobster", "cursive"],
     },
-    // fontFamily: {
-    //   logo: ["Audiowide", "cursive"],
-    //   primary: ["Open Sans", "sans-serif"],
-    //   writing: ["Lobster", "cursive"],
-    // },
   },
   plugins: [],
 };
