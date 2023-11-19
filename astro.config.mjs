@@ -9,12 +9,12 @@ import alpine from '@astrojs/alpinejs';
 import solid from '@astrojs/solid-js';
 import astroI18next from 'astro-i18next';
 import sitemap from '@astrojs/sitemap';
-import vercel from '@astrojs/vercel/serverless';
+import vercelStatic from '@astrojs/vercel/static';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: vercel(),
+  adapter: vercelStatic(),
   integrations: [
     sitemap({
       i18n: {
