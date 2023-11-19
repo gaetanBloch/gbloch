@@ -4,16 +4,17 @@ import tailwindcss from 'tailwindcss';
 import postcssImport from 'postcss-import';
 import postcssNesting from 'tailwindcss/nesting';
 import autoprefixer from 'autoprefixer';
-import netlify from '@astrojs/netlify/functions';
+// import netlify from '@astrojs/netlify/functions';
 import alpine from '@astrojs/alpinejs';
 import solid from '@astrojs/solid-js';
 import astroI18next from 'astro-i18next';
 import sitemap from '@astrojs/sitemap';
+import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server',
-  adapter: netlify(),
+  adapter: vercel(),
   integrations: [
     sitemap({
       i18n: {
