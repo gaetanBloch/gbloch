@@ -1,6 +1,6 @@
 ---
 ---
-<div x-data='{ switched: false }'>
+<div x-data='{ switched: true }'>
   <button :class='"theme-switcher " + (switched ? "switched" : "")'
        @click='switched = !switched; window.changeTheme(switched);' >
     <div :class='switched ? "switched" : ""'></div>
