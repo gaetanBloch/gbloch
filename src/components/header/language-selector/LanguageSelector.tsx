@@ -9,11 +9,9 @@ type SelectorProps = {
 
 const LanguageSelector: Component<SelectorProps> = props => {
   const locale = detectLocaleFromPath(props.path);
-  const [flag, setFlag] = createSignal();
-
   const initialLng = 'en';
   const definedLanguage = locale ?? initialLng;
-  setFlag(definedLanguage);
+  const [flag, setFlag] = createSignal(definedLanguage);
 
   const changeFlag = () => {
     switch (flag()) {
@@ -33,7 +31,6 @@ const LanguageSelector: Component<SelectorProps> = props => {
   };
 
   return <button class={'language-selector ' + flag()} onClick={changeFlag}></button>;
-
 };
 
 export default LanguageSelector;

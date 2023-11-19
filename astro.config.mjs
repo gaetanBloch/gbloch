@@ -35,7 +35,7 @@ export default defineConfig({
     server: {
       watch: {
         ignored: ['**/locales/**', '**/.idea/**'],
-      }
+      },
     },
     css: {
       postcss: {
