@@ -1,16 +1,10 @@
 ---
 ---
-<div x-data='{ switched: false, theme: "dark" }'>
-  <div :class='"theme-switcher " + (switched ? "switched" : "")'
-       @click='
-    switched = !switched;
-    const theme = switched ? "dark" : "light";
-    const root = window.document.documentElement;
-    root.classList.remove(theme === "dark" ? "light" : "dark");
-    root.classList.add(theme);'
-  >
+<div x-data='{ switched: false }'>
+  <button :class='"theme-switcher " + (switched ? "switched" : "")'
+       @click='switched = !switched; window.changeTheme(switched);' >
     <div :class='switched ? "switched" : ""'></div>
-  </div>
+  </button>
 </div>
 
 
@@ -43,7 +37,7 @@
     @apply outline-none inline-flex relative border-secondary border-2 bg-secondary border-solid rounded-full;
     width: 24px;
     height: 24px;
-    /*transition: all .5s ease;*/
+    transition: all .5s ease;
 
     &:hover {
       @apply cursor-pointer;
@@ -101,4 +95,5 @@
     root.classList.add(theme);
   }
 
+  window.changeTheme = changeTheme;
 </script>
