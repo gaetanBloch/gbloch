@@ -1,16 +1,19 @@
 ---
+
 ---
+
 <div x-data='{ switched: true }'>
-  <button :class='"theme-switcher " + (switched ? "switched" : "")'
-       @click='switched = !switched; window.changeTheme(switched);' >
-    <div :class='switched ? "switched" : ""'></div>
+  <button
+    :class='"preload theme-switcher " + (switched ? "switched" : "")'
+    @click='switched = !switched; window.changeTheme(switched);'
+  >
+    <div :class='(switched ? "switched" : "")'></div>
   </button>
 </div>
 
-
 <style lang='scss'>
   $animation: ease-in-out;
-  $duration: .4s;
+  $duration: 0.4s;
   $transition: background-color $animation $duration,
   box-shadow $animation $duration,
   transform $animation $duration;
@@ -34,17 +37,25 @@
   }
 
   .theme-switcher {
-    @apply outline-none inline-flex relative border-secondary border-2 bg-secondary border-solid rounded-full;
+
+    &.preload {
+      transition: all 0s ease !important;
+      display: block !important;
+      width: 24px !important;
+      height: 24px !important;
+    }
+
+    @apply relative inline-flex rounded-full border-2 border-solid border-secondary bg-secondary outline-none;
     width: 24px;
     height: 24px;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
 
     &:hover {
       @apply cursor-pointer;
     }
 
     &.switched {
-      @apply bg-secondary-light border-secondary-light;
+      @apply border-secondary-light bg-secondary-light;
       transform: scale(0.7);
 
       &:hover {
@@ -54,25 +65,26 @@
       }
 
       &:after {
-        @apply absolute top-1/2 left-1/2 rounded-full;
+        @apply absolute left-1/2 top-1/2 rounded-full;
         @include box-shadow($shadow-color);
-        content: "";
+        content: '';
         width: $shadow;
         height: $shadow;
         margin: $shadow-margin 0 0 $shadow-margin;
-        transition: all .5s ease;
+        transition: all 0.5s ease;
       }
     }
 
     div {
-      @apply absolute opacity-100 bg-background;
+      @apply absolute bg-background opacity-100;
       right: -13px;
       top: -8px;
       height: 24px;
       width: 24px;
       border-radius: 50%;
       transform: translate(0, 0);
-      transition: background-color .5s ease, transform .5s ease;
+      transition: background-color 0.5s ease,
+      transform 0.5s ease;
 
       &.switched {
         @apply bg-background-dark;
@@ -95,5 +107,10 @@
     root.classList.add(theme);
   }
 
-  window.changeTheme = changeTheme;
+  window.changeTheme = changeTheme
+
+  setTimeout(() => {
+    document.querySelector(".theme-switcher").classList.remove("preload");
+  }, 500);
+
 </script>

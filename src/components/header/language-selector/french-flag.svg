@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='25' height='20'
+  class='rounded-sm me-2'>
+  <rect width='25' height='20' fill='#ED2939'/>
+  <rect width='16.7' height='20' fill='#fff'/>
+  <rect width='8.3' height='20' fill='#002395'/>
+</svg>

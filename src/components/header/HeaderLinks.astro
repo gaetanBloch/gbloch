@@ -1,18 +1,20 @@
 ---
-import HeaderLink from "./HeaderLink.astro";
-import HeaderButton from "./HeaderButton.astro";
-import { t } from "i18next";
+import HeaderLink from './HeaderLink.astro';
+import HeaderButton from './HeaderButton.astro';
+import { t } from 'i18next';
 ---
 
-<span class='hidden md:inline md:space-x-4 lg:space-x-6'>
-      <HeaderLink name={ t('header.about')} />
-      <HeaderLink name={ t('header.portfolio')} />
-      <HeaderLink name={ t('header.certifications')} />
-      <HeaderLink name={ t('header.contact')} />
-      <HeaderButton />
-      <span
-        class='hidden md:inline-flex select-none align-baseline text-2xl text-secondary dark:text-secondary-lighter'>|</span>
-    </span>
+<span class="hidden md:inline md:space-x-4 lg:space-x-6">
+  <HeaderLink name={t('header.about')} />
+  <HeaderLink name={t('header.portfolio')} />
+  <HeaderLink name={t('header.certifications')} />
+  <HeaderLink name={t('header.contact')} />
+  <HeaderButton />
+  <span
+    class="hidden md:inline-flex select-none align-baseline text-2xl text-secondary dark:text-secondary-lighter"
+    >|</span
+  >
+</span>
 
 <style>
   .header-items {
@@ -21,16 +23,15 @@ import { t } from "i18next";
     }
 
     &--dropdown {
-      @apply flex flex-col items-center m-auto w-screen h-screen space-y-4 text-xl font-bold;
+      @apply m-auto flex h-screen w-screen flex-col items-center space-y-4 text-xl font-bold;
     }
 
     &__separator {
-      @apply hidden md:inline-flex select-none align-baseline text-2xl text-secondary dark:text-secondary-lighter;
+      @apply hidden select-none align-baseline text-2xl text-secondary dark:text-secondary-lighter md:inline-flex;
     }
 
     &__flag {
-      margin-left: 1em !important;
+      //margin-left: 1em !important;
     }
   }
-
 </style>

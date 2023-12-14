@@ -1,18 +1,17 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import Header from "../../components/header/Header.astro";
-import Home from "../../components/Home.astro";
-import { t, changeLanguage } from "i18next";
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/header/Header.astro';
+import Home from '../../components/Home.astro';
+import { t, changeLanguage } from 'i18next';
 
-changeLanguage("fr");
+changeLanguage('fr');
 ---
 
-<Layout title={ t('site.title') }>
+<Layout title={t('site.title')}>
   <Header />
   <main>
     <Home />
   </main>
 </Layout>
 
-<style lang='scss'>
-</style>
+<style lang="scss"></style>

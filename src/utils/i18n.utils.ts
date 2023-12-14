@@ -1,4 +1,4 @@
-import config from '../../astro-i18next.config.ts';
+import config from '../../astro-i18next.config';
 import i18next from 'i18next';
 
 /**
@@ -103,7 +103,7 @@ export const localizePath = (
   return handleTrailingSlash(localizedPath, trailingSlash);
 };
 
-export const handleTrailingSlash = (path: string, trailingSlash: config['trailingSlash']) => {
+export const handleTrailingSlash = (path: string, trailingSlash = config['trailingSlash']) => {
   if (path === '/') {
     return path;
   }

@@ -7,25 +7,30 @@ interface Props {
 const { name, bold } = Astro.props;
 ---
 
-<a href='#'
-   class='header-item relative no-underline select-none focus:outline-none before:bg-primary-light dark:before:bg-primary-light'>
-  { name }
+<a
+  href="#"
+  class="header-item relative no-underline select-none focus:outline-none before:bg-primary-light dark:before:bg-primary-light"
+>
+  {name}
 </a>
 
-<style lang='scss'>
+<style lang="scss">
   $animation: ease-in-out;
-  $duration: .3s;
+  $duration: 0.3s;
 
   .header-item {
     &:before {
-      @apply absolute left-1 -right-1 h-1 opacity-0 dark:bg-primary-light;
+      @apply absolute -right-1 left-1 h-1 opacity-0 dark:bg-primary-light;
       bottom: -0.125em;
       content: '';
       transform: translateY(0.5em);
-      transition: transform $animation $duration, opacity $animation $duration;
+      transition:
+        transform $animation $duration,
+        opacity $animation $duration;
     }
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       &:before {
         @apply opacity-100;
         transform: translateY(0.1em);

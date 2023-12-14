@@ -1,5 +1,6 @@
 {
   "extends": "astro/tsconfigs/base",
+  "module": "esnext",
   "compilerOptions": {
     "jsx": "preserve",
     "jsxImportSource": "solid-js"

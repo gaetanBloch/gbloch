@@ -1,36 +1,110 @@
-import './languageSelector.scss';
-import { type Component, createSignal } from 'solid-js';
-import { detectLocaleFromPath, localizePath } from '../../../utils/i18n.utils.ts';
+import "./languageSelector.scss";
+import { type Component, createSignal } from "solid-js";
+import { detectLocaleFromPath, localizePath } from "../../../utils/i18n.utils";
+import Dismiss from "solid-dismiss";
+import FrenchFlag from "./french-flag.svg?raw";
+import JapaneseFlag from "./japan-flag.svg?raw";
+import UKFlag from "./uk-flag.svg?raw";
+import SpainFlag from "./spain-flag.svg?raw";
 
 type SelectorProps = {
   path: string;
-  languages: string[];
+  supportedLanguages: string[];
+};
+
+interface language {
+  code: string;
+  label: string;
+  flag: string;
+}
+
+type Lang = Record<string, language>;
+
+const languages: Lang = {
+  en: {
+    code: "en",
+    label: "English",
+    flag: UKFlag,
+  },
+  fr: {
+    code: "fr",
+    label: "Français",
+    flag: FrenchFlag,
+  },
+  ja: {
+    code: "ja",
+    label: "日本語",
+    flag: JapaneseFlag,
+  },
+  es: {
+    code: "es",
+    label: "Español",
+    flag: SpainFlag,
+  },
 };
 
 const LanguageSelector: Component<SelectorProps> = props => {
   const locale = detectLocaleFromPath(props.path);
-  const initialLng = 'en';
-  const definedLanguage = locale ?? initialLng;
-  const [flag, setFlag] = createSignal(definedLanguage);
+  const defaultLang = "en";
+  const definedLanguage = locale ?? defaultLang;
+  const [lang] = createSignal<language>(
+    languages[definedLanguage],
+  );
 
-  const changeFlag = () => {
-    switch (flag()) {
-      case 'en':
-        setFlag('fr');
-        break;
-      case 'fr':
-        setFlag('ja');
-        break;
-      case 'ja':
-        setFlag('en');
-        break;
-      default:
-        setFlag('en');
-    }
-    location = localizePath(props.path, flag());
-  };
+  const [open, setOpen] = createSignal(false);
+  let btnEl: HTMLButtonElement | null = null;
 
-  return <button class={'language-selector ' + flag()} onClick={changeFlag}></button>;
+  return (
+    <>
+      <span class='inline-flex'>
+        <span class='relative'>
+          <button
+            ref={ btnEl }
+            type='button'
+            id='language-dropdown-button'
+            class='flex flex-row rounded-lg cursor-pointer relative'
+            aria-expanded='false'
+            aria-haspopup='true'>
+            <span innerHTML={ lang().flag } class='rounded-sm absolute top-[2px]' />
+            <span class="flex ml-8">{ lang().label }</span>
+          </button>
+
+          <Dismiss
+            open={ open }
+            setOpen={ setOpen }
+            menuButton={ btnEl }
+            cursorKeys>
+            {/*Dropdown panel, show/hide based on dropdown state.*/ }
+            <div
+              class='z-50 absolute right-[-1.5rem] mt-2 list-none bg-background border border-black dark:border-neutral-lightest dark:bg-background-dark divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700'
+              role='menu' aria-orientation='vertical'
+              aria-labelledby='user-menu-button' tabIndex='-1'>
+              <ul class='py-2 font-medium' role='none'>
+                {
+                  Object.keys(languages).map((key) => {
+                    const language = languages[key];
+                    return (
+                      <li>
+                        <a href={ localizePath(props.path, language.code) }
+                           class='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white'
+                           role='menuitem'>
+                          <div class='inline-flex items-center'>
+                            <div innerHTML={ language.flag } class='rounded-sm me-2' />
+                            { language.label }
+                          </div>
+                        </a>
+                      </li>
+                    );
+                  })
+                }
+              </ul>
+            </div>
+          </Dismiss>
+        </span>
+      </span>
+    </>
+  );
 };
 
 export default LanguageSelector;
+
