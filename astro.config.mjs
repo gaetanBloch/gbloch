@@ -14,7 +14,7 @@ import vercelStatic from '@astrojs/vercel/static';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  adapter: vercelStatic(),
+  // adapter: vercelStatic(),
   site: 'https://gaetan-bloch.com/',
   integrations: [
     sitemap({
