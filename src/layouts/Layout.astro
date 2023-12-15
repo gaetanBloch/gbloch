@@ -16,12 +16,10 @@ const { title } = Astro.props;
     <SEO
       title={title}
       description={t('site.description')}
-      image="/images/image.png"
+      image="/images/logo.png"
       twitter={{
         cardType: 'summary_large_image',
-        site: '@bloch_gaetan',
         handle: '@bloch_gaetan',
-        creator: '@bloch_gaetan',
       }}
       openGraph={{
         basic: {
@@ -50,7 +48,7 @@ const { title } = Astro.props;
     <HeadHrefsLangs />
   </head>
   <body
-    class="font-primary text-secondary bg-background dark:text-secondary-lighter dark:bg-background-dark box-border h-screen"
+    class="preload font-primary text-secondary bg-background dark:text-secondary-lighter dark:bg-background-dark box-border h-screen"
   >
     <slot />
   </body><style is:global lang="scss">
@@ -123,9 +121,14 @@ const { title } = Astro.props;
     }
 
     body {
+
       transition:
         color ease 0.5s,
         background-color ease 0.5s;
+
+      &.preload {
+        transition: none;
+      }
     }
 
     code {

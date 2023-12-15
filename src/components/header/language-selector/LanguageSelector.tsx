@@ -62,7 +62,7 @@ const LanguageSelector: Component<SelectorProps> = props => {
             ref={ btnEl }
             type='button'
             id='language-dropdown-button'
-            class='flex flex-row rounded-lg cursor-pointer relative'
+            class='flex flex-row rounded-lg cursor-pointer relative hover:font-black focus:font-black'
             aria-expanded='false'
             aria-haspopup='true'>
             <span innerHTML={ lang().flag } class='rounded-sm absolute top-[2px]' />
@@ -76,7 +76,8 @@ const LanguageSelector: Component<SelectorProps> = props => {
             cursorKeys>
             {/*Dropdown panel, show/hide based on dropdown state.*/ }
             <div
-              class='z-50 absolute right-[-1.5rem] mt-2 list-none bg-background border border-black dark:border-neutral-lightest dark:bg-background-dark divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700'
+              class='z-50 absolute right-[-1.5rem] mt-2 bg-background border border-background-dark rounded-lg
+              dark:border-neutral-lightest dark:bg-background-dark'
               role='menu' aria-orientation='vertical'
               aria-labelledby='user-menu-button' tabIndex='-1'>
               <ul class='py-2 font-medium' role='none'>
@@ -84,9 +85,10 @@ const LanguageSelector: Component<SelectorProps> = props => {
                   Object.keys(languages).map((key) => {
                     const language = languages[key];
                     return (
-                      <li>
+                      <li class="list-none">
                         <a href={ localizePath(props.path, language.code) }
-                           class='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white'
+                           class='block px-4 py-2 text-sm hover:text-black hover:font-black
+                           dark:hover:text-neutral-lightest dark:text-gray-400 dark:hover:bg-gray-600 '
                            role='menuitem'>
                           <div class='inline-flex items-center'>
                             <div innerHTML={ language.flag } class='rounded-sm me-2' />

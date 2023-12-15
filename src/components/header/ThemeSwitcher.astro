@@ -2,7 +2,7 @@
 
 ---
 
-<div x-data='{ switched: true }'>
+<div x-data='{ switched: (localStorage.getItem("theme") === "light" ? false : true) }'>
   <button
     :class='"preload theme-switcher " + (switched ? "switched" : "")'
     @click='switched = !switched; window.changeTheme(switched);'
@@ -12,6 +12,7 @@
 </div>
 
 <style lang='scss'>
+
   $animation: ease-in-out;
   $duration: 0.4s;
   $transition: background-color $animation $duration,
@@ -105,12 +106,23 @@
     const root = window.document.documentElement;
     root.classList.remove(theme === "dark" ? "light" : "dark");
     root.classList.add(theme);
+    localStorage.setItem("theme", theme);
   }
 
-  window.changeTheme = changeTheme
+  window.changeTheme = changeTheme;
+
+  function loadTheme() {
+    const theme = localStorage.getItem("theme") || "dark";
+    const root = window.document.documentElement;
+    root.classList.remove(theme === "dark" ? "light" : "dark");
+    root.classList.add(theme);
+  }
+
+  loadTheme();
 
   setTimeout(() => {
     document.querySelector(".theme-switcher").classList.remove("preload");
+    document.querySelector("body").classList.remove("preload");
   }, 500);
 
 </script>
