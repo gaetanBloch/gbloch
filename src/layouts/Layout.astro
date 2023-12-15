@@ -1,8 +1,7 @@
 ---
-import i18next, { t } from "i18next";
-import HeadHrefsLangs
-  from "../components/header/language-selector/HeadHrefsLangs.astro";
-import { SEO } from "astro-seo";
+import i18next, { t } from 'i18next';
+import HeadHrefsLangs from '../components/header/language-selector/HeadHrefsLangs.astro';
+import { SEO } from 'astro-seo';
 
 interface Props {
   title: string;
@@ -12,133 +11,136 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={ i18next.language } class='dark'>
-<head>
-  <SEO
-    title={ title }
-    description={ t("site.description") }
-    image='/images/image.png'
-    twitter={ {
-      cardType: "summary_large_image",
-      site: "@bloch_gaetan",
-      handle: "@bloch_gaetan",
-      creator: "@bloch_gaetan",
-    } }
-    openGraph={ {
-      basic: {
-        title: { title },
-        type: "website",
-        image: "/images/image.png",
-        url: "https://gaetanbloch.ai",
-      },
-      optional: {
-        description: t("site.description"),
-        locale: i18next.language,
-        siteName: "Gaëtan Bloch",
-      },
-      image: {
-          url: "https://i.imgur.com/j6IGla5.png",
-          alt: "gbloch",
+<html lang={i18next.language} class="dark">
+  <head>
+    <SEO
+      title={title}
+      description={t('site.description')}
+      image="/images/logo.png"
+      twitter={{
+        cardType: 'summary_large_image',
+        handle: '@bloch_gaetan',
+      }}
+      openGraph={{
+        basic: {
+          title: title,
+          type: 'website',
+          image: '/images/image.png',
+          url: 'https://gaetanbloch.ai',
         },
-    } }
-  />
-  <meta charset='UTF-8' />
-  <meta content='width=device-width, initial-scale=1' name='viewport' />
-  <link href='/favicon.ico' rel='icon' />
-  <meta name='generator' content={ Astro.generator } />
-  <title> { title } </title>
-  <meta name='description' content={ t("site.description") } />
-  <HeadHrefsLangs />
-</head>
-<body
-  class='font-primary text-secondary bg-background dark:text-secondary-lighter dark:bg-background-dark box-border h-screen'
->
-<slot />
-</body>
-</html>
-<style is:global lang='scss'>
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
+        optional: {
+          description: t('site.description'),
+          locale: i18next.language,
+          siteName: 'Gaëtan Bloch',
+        },
+        image: {
+          url: 'https://i.imgur.com/j6IGla5.png',
+          alt: 'gbloch',
+        },
+      }}
+    />
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="/favicon.ico" rel="icon" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={t('site.description')} />
+    <HeadHrefsLangs />
+  </head>
+  <body
+    class="preload font-primary text-secondary bg-background dark:text-secondary-lighter dark:bg-background-dark box-border h-screen"
+  >
+    <slot />
+  </body><style is:global lang="scss">
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
 
-  @layer base {
-    @font-face {
-      font-family: 'Audiowide';
-      font-style: normal;
-      font-weight: 400;
-      font-display: block;
-      src: url('/fonts/Audiowide-Regular.ttf') format('truetype');
+    @layer base {
+      @font-face {
+        font-family: 'Audiowide';
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url('/fonts/Audiowide-Regular.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Lobster';
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url('/fonts/LobsterTwo-Regular.ttf') format('truetype');
+      }
+
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 300;
+        font-display: block;
+        src: url('/fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+      }
     }
 
-    @font-face {
-      font-family: 'Lobster';
-      font-style: normal;
-      font-weight: 400;
-      font-display: block;
-      src: url('/fonts/LobsterTwo-Regular.ttf') format('truetype');
-    }
+    :root {
+      --primary: #d90429;
+      --primary-bright: #e13654;
+      --primary-light: #e8687f;
+      --primary-lighter: #f09ba9;
+      --primary-lightest: #f7cdd4;
+      --secondary: #465771;
+      --secondary-bright: #708ab4;
+      --secondary-light: #8cade1;
+      --secondary-lighter: #baceed;
+      --secondary-lightest: #dde6f6;
+      --neutral: #717a8b;
+      --neutral-bright: #8d99ae;
+      --neutral-light: #afb8c6;
+      --neutral-lighter: #c6ccd7;
+      --neutral-lightest: #e8ebef;
+      --background: rgb(237, 242, 244);
+      --background-dark: #2b2d42;
+      --white: #ffffff;
+      --black: #000000;
+      --black-background: rgba(0, 0, 0, 0.3);
+      --black-background-dark: rgba(0, 0, 0, 0.6);
+      --backdrop-color: rgba(237, 242, 244, 0.9);
+      --transparent: rgba(255, 255, 255, 0);
 
-    @font-face {
-      font-family: 'Open Sans';
-      font-style: normal;
-      font-weight: 300;
-      font-display: block;
-      src: url('/fonts/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
-    }
-  }
-
-  :root {
-    --primary: #d90429;
-    --primary-bright: #e13654;
-    --primary-light: #e8687f;
-    --primary-lighter: #f09ba9;
-    --primary-lightest: #f7cdd4;
-    --secondary: #465771;
-    --secondary-bright: #708ab4;
-    --secondary-light: #8cade1;
-    --secondary-lighter: #baceed;
-    --secondary-lightest: #dde6f6;
-    --neutral: #717a8b;
-    --neutral-bright: #8d99ae;
-    --neutral-light: #afb8c6;
-    --neutral-lighter: #c6ccd7;
-    --neutral-lightest: #e8ebef;
-    --background: rgb(237, 242, 244);
-    --background-dark: #2b2d42;
-    --white: #ffffff;
-    --black: #000000;
-    --black-background: rgba(0, 0, 0, 0.3);
-    --black-background-dark: rgba(0, 0, 0, 0.6);
-    --backdrop-color: rgba(237, 242, 244, 0.9);
-    --transparent: rgba(255, 255, 255, 0);
-
-    --accent: 136, 58, 234;
-    --accent-light: 224, 204, 250;
-    --accent-dark: 49, 10, 101;
-    --accent-gradient: linear-gradient(
+      --accent: 136, 58, 234;
+      --accent-light: 224, 204, 250;
+      --accent-dark: 49, 10, 101;
+      --accent-gradient: linear-gradient(
         45deg,
         rgb(var(--accent)),
         rgb(var(--accent-light)) 30%,
         white 60%
-    );
+      );
 
-    @apply h-screen;
-  }
+      @apply h-screen;
+    }
 
+    body {
 
-  body {
-    transition: color ease .5s, background-color ease .5s;
-  }
+      transition:
+        color ease 0.5s,
+        background-color ease 0.5s;
 
-  code {
-    font-family: Menlo,
-    Monaco,
-    Lucida Console,
-    Liberation Mono,
-    DejaVu Sans Mono,
-    Bitstream Vera Sans Mono,
-    Courier New,
-    monospace;
-  }
+      &.preload {
+        transition: none;
+      }
+    }
 
-</style>
+    code {
+      font-family:
+        Menlo,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace;
+    }
+  </style>
+</html>

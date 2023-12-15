@@ -9,12 +9,13 @@ import alpine from '@astrojs/alpinejs';
 import solid from '@astrojs/solid-js';
 import astroI18next from 'astro-i18next';
 import sitemap from '@astrojs/sitemap';
-// import vercelStatic from '@astrojs/vercel/static';
+import vercelStatic from '@astrojs/vercel/static';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
-  // adapter: vercelStatic(),
+  adapter: vercelStatic(),
+  site: 'https://gaetan-bloch.com/',
   integrations: [
     sitemap({
       i18n: {
@@ -23,6 +24,7 @@ export default defineConfig({
           en: 'en', // The `defaultLocale` value must present in `locales` keys
           fr: 'fr',
           ja: 'ja',
+          es: 'es',
         },
       },
     }),
@@ -32,6 +34,9 @@ export default defineConfig({
     astroI18next(),
   ],
   vite: {
+    ssr: {
+      noExternal: ['solid-dismiss'],
+    },
     server: {
       watch: {
         ignored: ['**/locales/**', '**/.idea/**'],

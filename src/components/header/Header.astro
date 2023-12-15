@@ -5,22 +5,35 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
 import LanguageSelector from "./language-selector/LanguageSelector.astro";
 ---
 
-<header class='header px-5 pt-5 pb-5 grid md:px-14 lg:px-28 md:pb-10 md:pt-10'>
-  <span class='justify-self-start self-center relative z-20'>
+<header class='hidden header px-5 pt-5 pb-5 md:grid md:px-14 lg:px-28 md:pb-10 md:pt-10'>
+  <div class='justify-self-start self-center relative z-20'>
     <Logo />
-  </span>
-  <span class='justify-self-end self-center space-x-4 lg:space-x-6 z-20'>
+  </div>
+  <div class='justify-self-end self-center space-x-4 z-20'>
     <HeaderLinks />
-    <span class='inline-flex align-middle select-none gap-3 w-20'>
-      <ThemeSwitcher />
+    <div class='inline-flex gap-5'>
       <LanguageSelector />
-    </span>
-  </span>
+      <ThemeSwitcher />
+    </div>
+  </div>
+</header>
+
+<header class='grid header px-5 pt-5 pb-5 md:hidden md:px-14 lg:px-28 md:pb-10 md:pt-10'>
+  <div class='justify-self-start self-center relative z-20'>
+    <Logo />
+  </div>
+  <div class='justify-self-end self-center space-x-4 z-20'>
+    <HeaderLinks />
+    <div class='inline-flex gap-5'>
+      <LanguageSelector />
+      <ThemeSwitcher />
+    </div>
+  </div>
 </header>
 
 <style lang='scss'>
   $transition-function: ease;
-  $transition-duration: .5s;
+  $transition-duration: 0.5s;
   $transition: backdrop-filter $transition-function $transition-duration,
   opacity $transition-function $transition-duration,
   font-weight $transition-function $transition-duration,
@@ -31,7 +44,7 @@ import LanguageSelector from "./language-selector/LanguageSelector.astro";
 
     &-left {
       .MenuMode {
-        @apply absolute -top-3 -right-7
+        @apply absolute -right-7 -top-3;
       }
     }
   }

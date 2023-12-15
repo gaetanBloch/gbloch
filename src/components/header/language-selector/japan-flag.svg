@@ -1,0 +1,5 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='25' height='20'
+  class='rounded-sm me-2'>
+  <rect fill='#fff' height='20' width='25'/>
+  <circle fill='#bc002d' cx='12.5' cy='10' r='5'/>
+</svg>

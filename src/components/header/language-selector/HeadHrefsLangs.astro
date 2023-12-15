@@ -1,13 +1,13 @@
 ---
-import i18next from "i18next";
-import { localizeUrl } from "astro-i18next";
+import i18next from 'i18next';
+import { localizeUrl } from 'astro-i18next';
 
 const supportedLanguages = i18next.languages;
 const currentUrl = Astro.url.href;
 ---
 
 {
-  supportedLanguages.map((supportedLanguage) => (
+  supportedLanguages.map(supportedLanguage => (
     <link
       rel="alternate"
       hreflang={supportedLanguage}
