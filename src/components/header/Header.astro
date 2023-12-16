@@ -7,9 +7,10 @@ import ToggleMenu from './ToggleMenu.astro';
 import { t } from 'i18next';
 import HeaderButton from './HeaderButton.astro';
 import HeaderLink from './HeaderLink.astro';
+import { links } from "../../utils/types";
 ---
 
-<header class="header px-5 pt-5 pb-5 grid md:px-14 lg:px-28 md:pb-10 md:pt-10">
+<header class="px-5 pt-5 pb-5 grid md:px-14 lg:px-28 md:pb-10 md:pt-10">
   <div class="justify-self-start self-center relative z-20 grid-cols-1">
     <Logo />
   </div>
@@ -20,64 +21,26 @@ import HeaderLink from './HeaderLink.astro';
       <ThemeSwitcher />
     </div>
   </div>
-  <!--<div class="inline-flex self-center justify-self-end flex-col md:hidden">-->
-    <div class="inline-flex items-center align-middle gap-5 self-center justify-self-end md:hidden">
-      <LanguageSelector />
-      <ThemeSwitcher />
-      <ToggleMenu />
-    </div>
-  <!--</div>-->
+  <div class="inline-flex items-center align-middle gap-5 self-center justify-self-end md:hidden">
+    <LanguageSelector />
+    <ThemeSwitcher />
+    <ToggleMenu />
+  </div>
   <div
     id="vertical-menu"
     class="hidden flex h-screen justify-self-center flex-col col-span-2 gap-5 mt-5 items-center"
   >
-    <HeaderLink name={t('header.about')} horizontal={false} />
-    <HeaderLink name={t('header.portfolio')} horizontal={false} />
-    <HeaderLink name={t('header.certifications')} horizontal={false} />
-    <HeaderLink name={t('header.contact')} horizontal={false} />
+    {
+      links.map((link) => (
+        <HeaderLink name={t(link.i18nKey)} horizontal={false} />
+      ))
+    }
     <HeaderButton />
   </div>
 </header>
 
-<!--<header class="grid header px-5 pt-5 pb-5 md:grid md:px-14 lg:px-28 md:pb-10 md:pt-10">-->
-<!--  <div class="justify-self-start self-center relative z-20">-->
-<!--    <Logo />-->
-<!--  </div>-->
-<!--  <div class="inline-flex self-center justify-self-end flex-col">-->
-<!--    <div class="inline-flex items-center align-middle gap-5">-->
-<!--      <LanguageSelector />-->
-<!--      <ThemeSwitcher />-->
-<!--      <ToggleMenu />-->
-<!--    </div>-->
-<!--  </div>-->
-<!--  <div-->
-<!--    id="vertical-menu"-->
-<!--    class="hidden flex h-screen justify-self-center flex-col col-span-2 gap-5 mt-5 items-center"-->
-<!--  >-->
-<!--    <HeaderLink name={t('header.about')} horizontal={false} />-->
-<!--    <HeaderLink name={t('header.portfolio')} horizontal={false} />-->
-<!--    <HeaderLink name={t('header.certifications')} horizontal={false} />-->
-<!--    <HeaderLink name={t('header.contact')} horizontal={false} />-->
-<!--    <HeaderButton />-->
-<!--  </div>-->
-<!--</header>-->
-
 <style lang="scss">
-  $transition-function: ease;
-  $transition-duration: 0.5s;
-  $transition:
-    backdrop-filter $transition-function $transition-duration,
-    opacity $transition-function $transition-duration,
-    font-weight $transition-function $transition-duration,
-    background-color $transition-function $transition-duration;
-
-  .header {
+  header {
     grid-template-columns: auto 1fr;
-
-    &-left {
-      .MenuMode {
-        @apply absolute -right-7 -top-3;
-      }
-    }
   }
 </style>
