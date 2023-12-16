@@ -1,0 +1,71 @@
+---
+export interface Props {
+  label?: string;
+  class?: string;
+}
+
+const {
+  label = 'Toggle Menu',
+  class: className = 'flex flex-col rounded justify-center items-center cursor-pointer group',
+} = Astro.props;
+---
+
+<button class={className} aria-label={label} data-toggle-menu>
+  <span class="sr-only">{label}</span>
+  <slot>
+    <span
+      aria-hidden="true"
+      class="h-0.5 w-6 my-1 rounded-full bg-background-dark dark:bg-background transition ease transform duration-200 opacity-80 group-[.expanded]:rotate-45 group-[.expanded]:translate-y-2.5"
+    ></span>
+    <span
+      aria-hidden="true"
+      class="h-0.5 w-6 my-1 rounded-full bg-background-dark dark:bg-background transition ease transform duration-200 opacity-80 group-[.expanded]:opacity-0"
+    ></span>
+    <span
+      aria-hidden="true"
+      class="h-0.5 w-6 my-1 rounded-full bg-background-dark dark:bg-background transition ease transform duration-200 opacity-80 group-[.expanded]:-rotate-45 group-[.expanded]:-translate-y-2.5"
+    ></span>
+  </slot>
+</button>
+
+<style>
+  [data-toggle-menu] path {
+    @apply transition;
+  }
+
+  [data-toggle-menu].expanded g > path:first-child {
+    @apply translate-x-[-3px] translate-y-[15px] -rotate-45;
+  }
+
+  [data-toggle-menu].expanded g > path:last-child {
+    @apply translate-x-[14px] translate-y-[-8px] rotate-45;
+  }
+</style>
+
+<script>
+  import { attachEvent } from '../../utils/scripts';
+
+  attachEvent('#header nav', 'click', function () {
+    document.querySelector('[data-toggle-menu]')?.classList.remove('expanded');
+    document.body.classList.remove('overflow-hidden');
+    document.getElementById('header')?.classList.remove('h-screen');
+    document.getElementById('header')?.classList.remove('expanded');
+    document.querySelector('#header nav')?.classList.add('hidden');
+    document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
+  });
+
+  attachEvent('[data-toggle-menu]', 'click', function (_, elem) {
+    elem.classList.toggle('expanded');
+    document.body.classList.toggle('overflow-hidden');
+    document.getElementById('header')?.classList.toggle('h-screen');
+    document.getElementById('header')?.classList.toggle('expanded');
+    document.querySelector('#header nav')?.classList.toggle('hidden');
+    document.querySelector('#vertical-menu')?.classList.toggle('hidden');
+    document.querySelector('#header > div > div:last-child')?.classList.toggle('hidden');
+  });
+
+  const elem = document.querySelector('[data-toggle-menu]');
+  if (elem) {
+    elem.classList.remove('expanded');
+  }
+</script>

@@ -5,19 +5,19 @@
 <div x-data='{ switched: (localStorage.getItem("theme") === "light" ? false : true) }'>
   <button
     :class='"preload theme-switcher " + (switched ? "switched" : "")'
-    @click='switched = !switched; window.changeTheme(switched);'
+    @click="switched = !switched; window.changeTheme(switched);"
   >
     <div :class='(switched ? "switched" : "")'></div>
   </button>
 </div>
 
-<style lang='scss'>
-
+<style lang="scss">
   $animation: ease-in-out;
   $duration: 0.4s;
-  $transition: background-color $animation $duration,
-  box-shadow $animation $duration,
-  transform $animation $duration;
+  $transition:
+    background-color $animation $duration,
+    box-shadow $animation $duration,
+    transform $animation $duration;
   $shadow: 6px;
   $shadow1: 18px;
   $shadow2: -18px;
@@ -27,18 +27,18 @@
   $shadow-margin: -3px;
 
   @mixin box-shadow($color) {
-    box-shadow: 0 $shadow2 0 $color,
-    0 $shadow1 0 $color,
-    $shadow1 0 0 $color,
-    $shadow2 0 0 $color,
-    $shadow3 $shadow3 0 $color,
-    $shadow4 $shadow3 0 $color,
-    $shadow3 $shadow4 0 $color,
-    $shadow4 $shadow4 0 $color;
+    box-shadow:
+      0 $shadow2 0 $color,
+      0 $shadow1 0 $color,
+      $shadow1 0 0 $color,
+      $shadow2 0 0 $color,
+      $shadow3 $shadow3 0 $color,
+      $shadow4 $shadow3 0 $color,
+      $shadow3 $shadow4 0 $color,
+      $shadow4 $shadow4 0 $color;
   }
 
   .theme-switcher {
-
     &.preload {
       transition: all 0s ease !important;
       display: block !important;
@@ -84,8 +84,9 @@
       width: 24px;
       border-radius: 50%;
       transform: translate(0, 0);
-      transition: background-color 0.5s ease,
-      transform 0.5s ease;
+      transition:
+        background-color 0.5s ease,
+        transform 0.5s ease;
 
       &.switched {
         @apply bg-background-dark;
@@ -96,33 +97,32 @@
 </style>
 
 <script>
-  import Alpine from "alpinejs";
+  import Alpine from 'alpinejs';
 
   window.Alpine = Alpine;
   Alpine.start();
 
   function changeTheme(switched: boolean) {
-    const theme = switched ? "dark" : "light";
+    const theme = switched ? 'dark' : 'light';
     const root = window.document.documentElement;
-    root.classList.remove(theme === "dark" ? "light" : "dark");
+    root.classList.remove(theme === 'dark' ? 'light' : 'dark');
     root.classList.add(theme);
-    localStorage.setItem("theme", theme);
+    localStorage.setItem('theme', theme);
   }
 
   window.changeTheme = changeTheme;
 
   function loadTheme() {
-    const theme = localStorage.getItem("theme") || "dark";
+    const theme = localStorage.getItem('theme') || 'dark';
     const root = window.document.documentElement;
-    root.classList.remove(theme === "dark" ? "light" : "dark");
+    root.classList.remove(theme === 'dark' ? 'light' : 'dark');
     root.classList.add(theme);
   }
 
   loadTheme();
 
   setTimeout(() => {
-    document.querySelector(".theme-switcher").classList.remove("preload");
-    document.querySelector("body").classList.remove("preload");
+    document.querySelector('.theme-switcher').classList.remove('preload');
+    document.querySelector('body').classList.remove('preload');
   }, 500);
-
 </script>

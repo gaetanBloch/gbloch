@@ -1,43 +1,75 @@
 ---
-import Logo from "./Logo.astro";
-import HeaderLinks from "./HeaderLinks.astro";
-import ThemeSwitcher from "./ThemeSwitcher.astro";
-import LanguageSelector from "./language-selector/LanguageSelector.astro";
+import Logo from './Logo.astro';
+import HeaderLinks from './HeaderLinks.astro';
+import ThemeSwitcher from './ThemeSwitcher.astro';
+import LanguageSelector from './language-selector/LanguageSelector.astro';
+import ToggleMenu from './ToggleMenu.astro';
+import { t } from 'i18next';
+import HeaderButton from './HeaderButton.astro';
+import HeaderLink from './HeaderLink.astro';
 ---
 
-<header class='hidden header px-5 pt-5 pb-5 md:grid md:px-14 lg:px-28 md:pb-10 md:pt-10'>
-  <div class='justify-self-start self-center relative z-20'>
+<header class="header px-5 pt-5 pb-5 grid md:px-14 lg:px-28 md:pb-10 md:pt-10">
+  <div class="justify-self-start self-center relative z-20 grid-cols-1">
     <Logo />
   </div>
-  <div class='justify-self-end self-center space-x-4 z-20'>
+  <div class="justify-self-end self-center space-x-4 z-20 hidden md:block">
     <HeaderLinks />
-    <div class='inline-flex gap-5'>
+    <div class="inline-flex gap-5">
       <LanguageSelector />
       <ThemeSwitcher />
     </div>
   </div>
-</header>
-
-<header class='grid header px-5 pt-5 pb-5 md:hidden md:px-14 lg:px-28 md:pb-10 md:pt-10'>
-  <div class='justify-self-start self-center relative z-20'>
-    <Logo />
-  </div>
-  <div class='justify-self-end self-center space-x-4 z-20'>
-    <HeaderLinks />
-    <div class='inline-flex gap-5'>
+  <!--<div class="inline-flex self-center justify-self-end flex-col md:hidden">-->
+    <div class="inline-flex items-center align-middle gap-5 self-center justify-self-end md:hidden">
       <LanguageSelector />
       <ThemeSwitcher />
+      <ToggleMenu />
     </div>
+  <!--</div>-->
+  <div
+    id="vertical-menu"
+    class="hidden flex h-screen justify-self-center flex-col col-span-2 gap-5 mt-5 items-center"
+  >
+    <HeaderLink name={t('header.about')} horizontal={false} />
+    <HeaderLink name={t('header.portfolio')} horizontal={false} />
+    <HeaderLink name={t('header.certifications')} horizontal={false} />
+    <HeaderLink name={t('header.contact')} horizontal={false} />
+    <HeaderButton />
   </div>
 </header>
 
-<style lang='scss'>
+<!--<header class="grid header px-5 pt-5 pb-5 md:grid md:px-14 lg:px-28 md:pb-10 md:pt-10">-->
+<!--  <div class="justify-self-start self-center relative z-20">-->
+<!--    <Logo />-->
+<!--  </div>-->
+<!--  <div class="inline-flex self-center justify-self-end flex-col">-->
+<!--    <div class="inline-flex items-center align-middle gap-5">-->
+<!--      <LanguageSelector />-->
+<!--      <ThemeSwitcher />-->
+<!--      <ToggleMenu />-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div-->
+<!--    id="vertical-menu"-->
+<!--    class="hidden flex h-screen justify-self-center flex-col col-span-2 gap-5 mt-5 items-center"-->
+<!--  >-->
+<!--    <HeaderLink name={t('header.about')} horizontal={false} />-->
+<!--    <HeaderLink name={t('header.portfolio')} horizontal={false} />-->
+<!--    <HeaderLink name={t('header.certifications')} horizontal={false} />-->
+<!--    <HeaderLink name={t('header.contact')} horizontal={false} />-->
+<!--    <HeaderButton />-->
+<!--  </div>-->
+<!--</header>-->
+
+<style lang="scss">
   $transition-function: ease;
   $transition-duration: 0.5s;
-  $transition: backdrop-filter $transition-function $transition-duration,
-  opacity $transition-function $transition-duration,
-  font-weight $transition-function $transition-duration,
-  background-color $transition-function $transition-duration;
+  $transition:
+    backdrop-filter $transition-function $transition-duration,
+    opacity $transition-function $transition-duration,
+    font-weight $transition-function $transition-duration,
+    background-color $transition-function $transition-duration;
 
   .header {
     grid-template-columns: auto 1fr;

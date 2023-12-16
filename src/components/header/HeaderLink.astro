@@ -2,14 +2,16 @@
 interface Props {
   name: string;
   bold: boolean;
+  horizontal: boolean;
 }
 
-const { name, bold } = Astro.props;
+const { name, bold, horizontal = true } = Astro.props;
 ---
 
 <a
   href="#"
-  class="header-item relative no-underline select-none focus:outline-none before:bg-primary-light dark:before:bg-primary-light"
+  class={'relative no-underline select-none focus:outline-none before:bg-primary-light dark:before:bg-primary-light ' +
+    (horizontal ? 'horizontal' : 'vertical')}
 >
   {name}
 </a>
@@ -18,23 +20,29 @@ const { name, bold } = Astro.props;
   $animation: ease-in-out;
   $duration: 0.3s;
 
-  .header-item {
-    &:before {
-      @apply absolute -right-1 left-1 h-1 opacity-0 dark:bg-primary-light;
-      bottom: -0.125em;
-      content: '';
-      transform: translateY(0.5em);
-      transition:
-        transform $animation $duration,
-        opacity $animation $duration;
-    }
-
-    &:hover,
-    &:focus {
+  a {
+    &.horizontal {
       &:before {
-        @apply opacity-100;
-        transform: translateY(0.1em);
+        @apply absolute -right-1 left-1 h-1 opacity-0 dark:bg-primary-light;
+        bottom: -0.125em;
+        content: '';
+        transform: translateY(0.5em);
+        transition:
+          transform $animation $duration,
+          opacity $animation $duration;
       }
+
+      &:hover,
+      &:focus {
+        &:before {
+          @apply opacity-100;
+          transform: translateY(0.1em);
+        }
+      }
+    }
+    &.vertical {
+      @apply relative block w-fit after:absolute after:block after:h-[4px] after:w-full after:origin-center
+      after:scale-x-0 after:bg-primary-light after:transition after:duration-300 after:content-[''] after:hover:scale-x-100 dark:after:bg-primary-light;
     }
   }
 </style>
