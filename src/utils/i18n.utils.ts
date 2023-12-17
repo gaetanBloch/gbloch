@@ -1,5 +1,5 @@
 import config from '../../astro-i18next.config';
-import i18next from 'i18next';
+import i18next, { t } from 'i18next';
 
 /**
  * Returns the locale detected from a given path
@@ -116,4 +116,121 @@ export const handleTrailingSlash = (path: string, trailingSlash = config['traili
     default:
       return path;
   }
+};
+
+export const interpolate = (
+  i18nKey: string,
+  referenceString: string,
+  namespace: string | null = null,
+): string => {
+  const localizedString = t(i18nKey, { ns: namespace });
+
+  if (localizedString === i18nKey) {
+    console.warn(`WARNING(astro-i18next): missing translation key ${i18nKey}.`);
+    return referenceString;
+  }
+
+  const tagsRegex = /<([\w\d]+)([^>]*)>/gi;
+
+  const referenceStringMatches = referenceString.match(tagsRegex);
+
+  if (!referenceStringMatches) {
+    console.warn(
+      'WARNING(astro-i18next): default slot does not include any HTML tag to interpolate! You should use the `t` function directly.',
+    );
+    return localizedString;
+  }
+
+  const referenceTags = [];
+  referenceStringMatches.forEach(tagNode => {
+    const [, name, attributes] = tagsRegex.exec(tagNode);
+    referenceTags.push({ name, attributes });
+
+    // reset regex state
+    tagsRegex.exec('');
+  });
+
+  let interpolatedString = localizedString;
+  for (let index = 0; index < referenceTags.length; index++) {
+    const referencedTag = referenceTags[index];
+    // Replace opening tags
+    interpolatedString = interpolatedString.replaceAll(
+      `<${index}>`,
+      `<${referencedTag.name}${referencedTag.attributes}>`,
+    );
+    // Replace closing tags
+    interpolatedString = interpolatedString.replaceAll(`</${index}>`, `</${referencedTag.name}>`);
+  }
+
+  return interpolatedString;
+};
+
+/**
+ * Creates a reference string from an HTML string. The reverse of interpolate(), for use
+ * with <Trans> when not explicitly setting a key
+ */
+export const createReferenceStringFromHTML = (html: string) => {
+  // Allow these tags to carry through to the output
+  const allowedTags = ['strong', 'br', 'em', 'i', 'b'];
+
+  let forbiddenStrings: { key: string; str: string }[] = [];
+  if (i18next.options) {
+    forbiddenStrings = ['keySeparator', 'nsSeparator', 'pluralSeparator', 'contextSeparator']
+      .map(key => {
+        return {
+          key,
+          str: i18next.options[key],
+        };
+      })
+      .filter(function <T>(val: T | undefined): val is T {
+        return typeof val !== 'undefined';
+      });
+  }
+
+  const tagsRegex = /<([\w\d]+)([^>]*)>/gi;
+
+  const referenceStringMatches = html.match(tagsRegex);
+
+  if (!referenceStringMatches) {
+    console.warn(
+      'WARNING(astro-i18next): default slot does not include any HTML tag to interpolate! You should use the `t` function directly.',
+    );
+    return html;
+  }
+
+  const referenceTags = [];
+  referenceStringMatches.forEach(tagNode => {
+    const [, name, attributes] = tagsRegex.exec(tagNode);
+    referenceTags.push({ name, attributes });
+
+    // reset regex state
+    tagsRegex.exec('');
+  });
+
+  let sanitizedString = html.replace(/\s+/g, ' ').trim();
+  for (let index = 0; index < referenceTags.length; index++) {
+    const referencedTag = referenceTags[index];
+    if (allowedTags.includes(referencedTag.name) && referencedTag.attributes.trim().length === 0) {
+      continue;
+    }
+    sanitizedString = sanitizedString.replaceAll(
+      new RegExp(`<${referencedTag.name}[^>]*?\\s*\\/>`, 'gi'),
+      `<${index}/>`,
+    );
+    sanitizedString = sanitizedString.replaceAll(
+      `<${referencedTag.name}${referencedTag.attributes}>`,
+      `<${index}>`,
+    );
+    sanitizedString = sanitizedString.replaceAll(`</${referencedTag.name}>`, `</${index}>`);
+  }
+
+  for (let index = 0; index < forbiddenStrings.length; index++) {
+    const { key, str } = forbiddenStrings[index];
+    if (sanitizedString.includes(str)) {
+      console.warn(
+        `WARNING(astro-i18next): "${str}" was found in a <Trans> translation key, but it is also used as ${key}. Either explicitly set an i18nKey or change the value of ${key}.`,
+      );
+    }
+  }
+  return sanitizedString;
 };

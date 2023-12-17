@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/header/Header.astro';
-import Home from '../components/Home.astro';
 import { t, changeLanguage } from 'i18next';
+import Main from '../components/Main.astro';
 
 changeLanguage('en');
 ---
@@ -10,7 +10,7 @@ changeLanguage('en');
 <Layout title={t('site.title')}>
   <Header />
   <main>
-    <Home />
+    <Main />
   </main>
 </Layout>
 

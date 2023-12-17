@@ -1,0 +1,40 @@
+---
+import { t } from 'i18next';
+
+interface Props {
+  i18nKey?: string;
+  url?: string;
+}
+
+const { i18nKey, url } = Astro.props;
+---
+
+<a href={url} class="font-black">
+  {t(i18nKey)}
+  <slot />
+</a>
+
+<style>
+  a {
+    text-decoration: none;
+    font-weight: 700;
+    position: relative;
+  }
+
+  a::before {
+    content: '';
+    background-color: hsl(350, 96%, 43%, 0.7);
+    position: absolute;
+    left: 0;
+    bottom: 1px;
+    width: 100%;
+    height: 4px;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+  }
+
+  a:hover::before {
+    bottom: 0;
+    height: 90%;
+  }
+</style>

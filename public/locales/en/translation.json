@@ -12,8 +12,9 @@
   },
   "home": {
     "greetings": "Hello there, my name is",
-    "position-engineer": "Polyglot Software Engineer",
-    "position-speaker": "International Speaker",
-    "position-author": "Book Author"
+    "position-engineer": "I'm a Polyglot Software Engineer,",
+    "position-speaker": "International Speaker,",
+    "position-author": "and Book Author.",
+    "description": "I am a Software Architect and Staff Engineer currently working at <0>Key Consulting</0> in Nantes, France. I am a polyglot software engineer, with a strong focus on the JVM ecosystem"
   }
 }

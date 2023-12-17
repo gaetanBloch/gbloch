@@ -1,0 +1,49 @@
+---
+import { Icon } from 'astro-icon';
+
+import X from './x.svg?raw';
+import GitHub from './github.svg?raw';
+import LinkedIn from './linkedin.svg?raw';
+import Medium from './medium.svg?raw';
+import Youtube from './youtube.svg?raw';
+---
+
+<div class="flex gap-5">
+  <a
+    class="inline-flex cursor-pointer hover:text-primary dark:hover:text-primary-light transition-[transform] duration-300 hover:translate-y-[-3px]"
+    href="https://github.com/gaetanbloch"
+  >
+    <Fragment set:html={GitHub} />
+  </a>
+  <a
+    class="inline-flex cursor-pointer hover:text-primary dark:hover:text-primary-light transition-[transform] duration-300 hover:translate-y-[-3px]"
+    href="http://www.linkedin.com/in/gaetanbloch"
+  >
+    <Fragment set:html={LinkedIn} />
+  </a>
+  <a
+    class="inline-flex mt-1 cursor-pointer hover:text-primary dark:hover:text-primary-light transition-[transform] duration-300 hover:translate-y-[-3px]"
+    href="https://twitter.com/bloch_gaetan"
+  >
+    <Fragment set:html={X} />
+  </a>
+  <a
+    class="inline-flex cursor-pointer hover:text-primary dark:hover:text-primary-light transition-[transform] duration-300 hover:translate-y-[-3px]"
+    href="https://www.youtube.com/channel/UC_h7fif9giqiWYje11F1YMg"
+  >
+    <Fragment set:html={Youtube} />
+  </a>
+  <a
+    class="inline-flex cursor-pointer hover:text-primary dark:hover:text-primary-light transition-[transform] duration-300 hover:translate-y-[-3px]"
+    href="https://medium.com/@gaetan.bloch"
+  >
+    <Fragment set:html={Medium} />
+  </a>
+  <a href="https://t.me/gbloch">
+    <Icon
+      pack="mdi"
+      name="telegram"
+      class="w-[40px] h-[40px] cursor-pointer hover:text-primary dark:hover:text-primary-light transition-[transform] duration-300 hover:translate-y-[-3px]"
+    />
+  </a>
+</div>

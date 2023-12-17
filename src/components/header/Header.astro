@@ -5,9 +5,9 @@ import ThemeSwitcher from './ThemeSwitcher.astro';
 import LanguageSelector from './language-selector/LanguageSelector.astro';
 import ToggleMenu from './ToggleMenu.astro';
 import { t } from 'i18next';
-import HeaderButton from './HeaderButton.astro';
+import HeaderButton from '../buttons/Button.astro';
 import HeaderLink from './HeaderLink.astro';
-import { links } from "../../utils/types";
+import { links } from '../../utils/types';
 ---
 
 <header class="px-5 pt-5 pb-5 grid md:px-14 lg:px-28 md:pb-10 md:pt-10">
@@ -30,12 +30,10 @@ import { links } from "../../utils/types";
     id="vertical-menu"
     class="hidden flex h-screen justify-self-center flex-col col-span-2 gap-5 mt-5 items-center"
   >
-    {
-      links.map((link) => (
-        <HeaderLink name={t(link.i18nKey)} horizontal={false} />
-      ))
-    }
-    <HeaderButton />
+    {links.map(link => <HeaderLink name={t(link.i18nKey)} horizontal={false} />)}
+    <span class="mt-3">
+      <HeaderButton i18nKey="header.resume" />
+    </span>
   </div>
 </header>
 

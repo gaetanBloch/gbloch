@@ -1,14 +1,22 @@
 ---
 import { t } from 'i18next';
+
+interface Props {
+  i18nKey: string;
+}
+
+const { i18nKey } = Astro.props;
 ---
 
 <button
-  class="text-primary border rounded dark:text-primary-light pt-1 pb-1 pr-2 pl-2 select-none focus:outline-none"
+  class="font-black text-[1.05em] text-primary border border-2 rounded dark:text-primary-light pt-1 pb-1 pr-2 pl-2 select-none focus:outline-none"
 >
-  {t('header.resume')}
+  {t(i18nKey)}
+  <slot />
 </button>
 
 <style lang="scss">
+
   $animation: ease-in-out;
   $duration: 0.4s;
   $transitionButton:
