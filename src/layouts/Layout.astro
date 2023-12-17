@@ -6,7 +6,6 @@ import { SEO } from 'astro-seo';
 interface Props {
   title: string;
 }
-
 const { title } = Astro.props;
 ---
 
@@ -118,6 +117,10 @@ const { title } = Astro.props;
         );
 
         @apply h-screen;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {

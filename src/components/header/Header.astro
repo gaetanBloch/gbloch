@@ -30,7 +30,7 @@ import { links } from '../../utils/types';
     id="vertical-menu"
     class="hidden flex h-screen justify-self-center flex-col col-span-2 gap-5 mt-5 items-center"
   >
-    {links.map(link => <HeaderLink name={t(link.i18nKey)} horizontal={false} />)}
+    {links.map(link => <HeaderLink name={t(link.i18nKey)} horizontal={false} url={link.url} />)}
     <span class="mt-3">
       <HeaderButton i18nKey="header.resume" />
     </span>

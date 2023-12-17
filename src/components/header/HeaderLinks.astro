@@ -6,7 +6,7 @@ import { links } from '../../utils/types';
 ---
 
 <nav class="inline md:space-x-4 lg:space-x-6">
-  {links.map(link => <HeaderLink name={t(link.i18nKey)} />)}
+  {links.map(link => <HeaderLink name={t(link.i18nKey)} url={link.url} />)}
   <HeaderButton i18nKey="header.resume" />
   <span
     class="inline-flex select-none align-baseline text-2xl text-secondary dark:text-secondary-lighter"

@@ -4,8 +4,10 @@
     "description": "Gaëtan Bloch is currently a Software Architect and Staff Engineer currently working at Key Consulting in Nantes, France. He is a polyglot software engineer, with a strong focus on the JVM ecosystem. He is also a passionate open source developer, international speaker and mentor."
   },
   "header": {
+    "home": "Home",
     "about": "About",
     "portfolio": "Portfolio",
+    "work": "Work",
     "certifications": "Certifications",
     "contact": "Contact",
     "resume": "Resume"

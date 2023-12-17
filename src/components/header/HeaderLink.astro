@@ -3,13 +3,14 @@ interface Props {
   name: string;
   bold: boolean;
   horizontal: boolean;
+  url: string;
 }
 
-const { name, bold, horizontal = true } = Astro.props;
+const { name, bold, horizontal = true, url = '#' } = Astro.props;
 ---
 
 <a
-  href="#"
+  href={url}
   class={'relative no-underline select-none focus:outline-none before:bg-primary-light dark:before:bg-primary-light ' +
     (horizontal ? 'horizontal' : 'vertical')}
 >
@@ -19,7 +20,6 @@ const { name, bold, horizontal = true } = Astro.props;
 <style lang="scss">
   $animation: ease-in-out;
   $duration: 0.3s;
-
   a {
     &.horizontal {
       &:before {

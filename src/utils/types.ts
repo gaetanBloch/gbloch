@@ -5,19 +5,19 @@ export interface Link {
 
 export const links: Link[] = [
   {
+    i18nKey: 'header.home',
+    url: '#home',
+  },
+  {
     i18nKey: 'header.about',
-    url: '/about',
+    url: '#about',
   },
   {
-    i18nKey: 'header.portfolio',
-    url: '/portfolio',
-  },
-  {
-    i18nKey: 'header.certifications',
-    url: '/certifications',
+    i18nKey: 'header.work',
+    url: '#work',
   },
   {
     i18nKey: 'header.contact',
-    url: '/contact',
+    url: '#contact',
   },
 ];
