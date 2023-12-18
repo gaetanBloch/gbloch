@@ -2,19 +2,21 @@
 import { t } from "i18next";
 import Home from "./home/Home.astro";
 ---
+<div>
+  <section id='home' class=' h-screen w-screen grid pt-36 sm:pt-36 md:pt-28 lg:pt-28 md:mt-5 lg:mt-20 xl:mt-32 2xl:mt-56 md:px-32 lg:px-52 xl:px-96 2xl:px-[40rem]'>
+    <!--<div-->
+    <!--  class=''>-->
+      <Home />
+    <!--</div>-->
+  </section>
+  <section id='about' class='flex pt-56 justify-center h-screen'>
+    <div class='text-4xl font-bold'>About me</div>
+  </section>
+  <section id='work' class='flex justify-center h-screen'>
+    <div class='text-4xl font-bold'>My Work</div>
+  </section>
+  <section id='contact' class='flex justify-center h-screen'>
+    <div class='text-4xl font-bold'>Contact</div>
+  </section>
+</div>
 
-<section id='home' class='block h-screen w-screen'>
-  <div
-    class='grid md:mt-5 lg:mt-20 xl:mt-32 2xl:mt-56 md:px-32 lg:px-52 xl:px-96 2xl:px-[40rem]'>
-    <Home />
-  </div>
-</section>
-<section id='about' class='flex justify-center h-screen'>
-  <div class='text-4xl font-bold'>About me</div>
-</section>
-<section id='work' class='flex justify-center h-screen'>
-  <div class='text-4xl font-bold'>My Work</div>
-</section>
-<section id='contact' class='flex justify-center h-screen'>
-  <div class='text-4xl font-bold'>Contact</div>
-</section>
