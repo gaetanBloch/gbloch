@@ -17,6 +17,14 @@ export const links: Link[] = [
     url: '#work',
   },
   {
+    i18nKey: 'header.technologies',
+    url: '#tech',
+  },
+  {
+    i18nKey: 'header.blog',
+    url: '#blog',
+  },
+  {
     i18nKey: 'header.contact',
     url: '#contact',
   },

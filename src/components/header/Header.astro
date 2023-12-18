@@ -10,18 +10,18 @@ import HeaderLink from './HeaderLink.astro';
 import { links } from '../../utils/types';
 ---
 
-<header class="px-5 pt-5 pb-5 grid md:px-14 lg:px-28 md:pb-10 md:pt-10">
+<header class="px-5 pt-5 pb-5 grid md:px-14 lg:px-28 md:pb-10 md:pt-10 fixed top-0 right-0 left-0 z-10">
   <div class="justify-self-start self-center relative z-20 grid-cols-1">
     <Logo />
   </div>
-  <div class="justify-self-end self-center space-x-4 z-20 hidden md:block">
+  <div class="justify-self-end self-center space-x-4 z-20 hidden lg:block">
     <HeaderLinks />
     <div class="inline-flex gap-5">
       <LanguageSelector />
       <ThemeSwitcher />
     </div>
   </div>
-  <div class="inline-flex items-center align-middle gap-5 self-center justify-self-end md:hidden">
+  <div class="inline-flex items-center align-middle gap-5 self-center justify-self-end lg:hidden">
     <LanguageSelector />
     <ThemeSwitcher />
     <ToggleMenu />
@@ -40,5 +40,6 @@ import { links } from '../../utils/types';
 <style lang="scss">
   header {
     grid-template-columns: auto 1fr;
+    backdrop-filter: blur(10px);
   }
 </style>
