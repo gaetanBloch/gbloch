@@ -1,7 +1,58 @@
 ---
-import Avatar from '../avatar/avatar.svg?raw';
+import Avatar from '../avatar/me-office.svg?raw';
+import Link from "../links/Link.astro";
 ---
 
-<div class="flex align-middle items-center justify-self-center">
-  <Fragment set:html={Avatar} />
+<div class="relative flex flex-col sm:flex-row w-[90%] lg:w-2/3">
+  <div class="p-5">
+    <span class="block font-black text-xl mb-2 font-writing">Hello everyone!</span>
+    <p class="block mb-2">
+      Over the past <b class='text-primary-light font-writing'>11 years</b>, I've cultivated a diverse and enriching
+      professional journey in <Link url='https://www.infoscience.co.jp/'>
+      <b class='font-writing'>JAPAN</b></Link> and <b class='text-primary-light font-writing'>FRANCE</b>.
+      My career has taken me through various sectors, such as <Link url='https://oppscience.com/'>Artificial Intelligence</Link>,
+      <Link url='https://www.infoscience.co.jp/'>Finance</Link>,
+      <Link url='https://www.team-y.fr/'>Industry 4.0</Link>,
+      <Link url='https://www.acs-ami.com/'>Insurance</Link>,
+      <Link url='https://www.renaultgroup.com/'>Automobile</Link>,
+      <Link url='https://www.pole-emploi.fr'>Employment</Link> and
+      <Link url='https://sante.gouv.fr/'>Government</Link> agencies.
+      I've also worked for high-paced <Link url='https://www.convelio.com/'>Private</Link> and
+      <Link url='https://mergify.com/'>Open-Source</Link> startups as well as numerous
+      <b class='text-primary-light font-writing'>consulting companies</b>:
+      <Link url='https://www.orange-business.com/'>Orange Business Services</Link>,
+      <Link url='https://www.akkodis.com/'>Akkodis</Link>,
+      <Link url='https://www.alliance4u.fr/'>Alliance 4U</Link>, and
+      <Link url='https://www.publicissapient.com/'><b class='text-lg'>Publicis Sapient</b></Link>, thus
+      working with dynamic teams and employing a range of methodologies, both onsite and remotely.
+    </p>
+    <p class='block mb-2'>
+      I specialize in tackling project challenges in development, architecture, integration,
+      configuration, deployment, observability, and evolution. I've navigated through a variety of
+      software architectures, from simple monoliths to complex microservices, micro frontends, and
+      serverless systems, in both on-premise and cloud-native environments. I'm particularly
+      passionate about High Availability projects, focusing on resilience, fault tolerance, and
+      disaster recovery.
+    </p>
+    <p>
+      Additionally, I'm actively involved with <Link url='https://geekle.us/'>Geekle</Link>,
+      a company dedicated to organizing <b class='text-primary-light font-writing '>conferences</b>
+      and meetups for software engineers, architects and leaders,
+      contributing as a <b class='text-primary-light font-writing '>speaker</b>, moderator, and
+      member of the acceptance committee for global high-tech summits. Beyond conference
+      organization, I love delivering <b class='text-primary-light font-writing '>podcasts</b>,
+      writing <b class='text-primary-light font-writing '>technical articles</b>, contributing to
+      <b class='text-primary-light font-writing '>open-source projects</b>,
+      and sharing my code on <Link url='https://github.com/gaetanBloch'>GitHub</Link>.
+      I'm driven by a relentless desire to
+      learn every day and equally enthusiastic about sharing knowledge with others.
+
+      <b class='mt-3 block font-writing text-xl'>This perpetual
+      learning and sharing spirit is what continually propels me forward in my career and personal
+        growth.</b>
+    </p>
+  </div>
+  <span class="inline-flex justify-center">
+    <Fragment set:html={Avatar} />
+  </span>
 </div>

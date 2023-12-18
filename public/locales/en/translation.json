@@ -12,7 +12,9 @@
     "contact": "Contact",
     "technologies": "Technologies",
     "blog": "Blog",
-    "resume": "Resume"
+    "resume": "Resume",
+    "education": "Education",
+    "testimonials": "Testimonials"
   },
   "home": {
     "greetings": "Hello there, my name is",

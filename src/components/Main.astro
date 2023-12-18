@@ -1,22 +1,46 @@
 ---
-import { t } from "i18next";
-import Home from "./home/Home.astro";
+import { t } from 'i18next';
+import Home from './home/Home.astro';
+import About from './about/About.astro';
 ---
+
 <div>
-  <section id='home' class=' h-screen w-screen grid pt-36 sm:pt-36 md:pt-28 lg:pt-28 md:mt-5 lg:mt-20 xl:mt-32 2xl:mt-56 md:px-32 lg:px-52 xl:px-96 2xl:px-[40rem]'>
-    <!--<div-->
-    <!--  class=''>-->
-      <Home />
-    <!--</div>-->
+  <section
+    id="home"
+    class="h-screen w-screen grid pt-20 md:pt-28 lg:pt-36 md:mt-5 lg:mt-20 xl:mt-32 2xl:mt-56 md:px-32 lg:px-52 xl:px-96 2xl:px-[40rem]"
+  >
+    <Home />
   </section>
-  <section id='about' class='flex pt-56 justify-center h-screen'>
-    <div class='text-4xl font-bold'>About me</div>
+  <section id="about" class="flex flex-col items-center pt-56 h-screen w-screen">
+    <h1
+      class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"
+    >
+      About me
+    </h1>
+    <About />
   </section>
-  <section id='work' class='flex justify-center h-screen'>
-    <div class='text-4xl font-bold'>My Work</div>
+  <section id="work" class="flex justify-center h-screen">
+    <div class="text-4xl font-bold">My Work</div>
   </section>
-  <section id='contact' class='flex justify-center h-screen'>
-    <div class='text-4xl font-bold'>Contact</div>
+  <section id="contact" class="flex justify-center h-screen">
+    <div class="text-4xl font-bold">Contact</div>
   </section>
 </div>
 
+<style lang="scss">
+  h1 {
+    display: inline-flex;
+    position: relative;
+    margin: 10px 0 10px;
+
+    &::after {
+      content: '';
+      display: block;
+      position: relative;
+      left: 0;
+      width: 300px;
+      height: 2px;
+      margin-left: 20px;
+    }
+  }
+</style>
