@@ -9,7 +9,7 @@ interface Props {
 const { i18nKey, url } = Astro.props;
 ---
 
-<a href={url} class="inline-flex font-black text-primary-light">{t(i18nKey)}<slot/></a>
+<a href={url} class="inline-flex font-black text-primary-light">{t(i18nKey)}<slot /></a>
 
 <style>
   a {
@@ -21,7 +21,6 @@ const { i18nKey, url } = Astro.props;
     background-repeat: no-repeat;
     transition: background-size 0.5s ease-in-out;
   }
-
   a:hover {
     background-size: 100% 2px;
     background-position: 0 100%;

@@ -38,6 +38,7 @@ export default {
       'primary-bold': ['Open Sans Bold', 'sans-serif'],
       // writing: ['Lobster', 'cursive'],
       writing: ['Exo', 'cursive'],
+      code: ['Code', 'monospace'],
     },
 
     screens: {
