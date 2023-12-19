@@ -33,10 +33,13 @@ export default {
     },
     fontFamily: {
       logo: ['Audiowide', 'cursive'],
+      logo2: ['Logo', 'cursive'],
       primary: ['Open Sans', 'sans-serif'],
+      'primary-bold': ['Open Sans Bold', 'sans-serif'],
       // writing: ['Lobster', 'cursive'],
-      writing: ['Menlo', 'cursive'],
+      writing: ['Exo', 'cursive'],
     },
+
     screens: {
       sm: '640px',
       // => @media (min-width: 640px) { ... }
