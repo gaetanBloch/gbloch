@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "0.3.1",
+    "@astrojs/mdx": "^2.0.1",
     "@astrojs/netlify": "3.1.1",
     "@astrojs/sitemap": "3.0.3",
     "@astrojs/solid-js": "3.0.2",
     "@astrojs/tailwind": "5.0.3",
     "@astrojs/vercel": "5.2.0",
+    "@astropub/md": "^0.3.0",
     "@types/alpinejs": "3.13.5",
     "@types/node": "20.10.4",
     "alpinejs": "3.13.3",

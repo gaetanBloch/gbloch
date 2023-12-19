@@ -4,10 +4,10 @@ export interface Link {
 }
 
 export const links: Link[] = [
-  // {
-  //   i18nKey: 'header.home',
-  //   url: '#home',
-  // },
+  {
+    i18nKey: 'header.home',
+    url: '#home',
+  },
   {
     i18nKey: 'header.about',
     url: '#about',
