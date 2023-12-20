@@ -1,0 +1,107 @@
+---
+import appConfig from '../../appConfig';
+import Link from '../links/Link.astro';
+import { clearDelegatedEvents } from 'solid-js/web';
+
+interface StrapiResponse {
+  data: Testimonial[];
+}
+
+interface Testimonial {
+  id: string;
+  attributes: {
+    company: string;
+    content: string;
+    name: string;
+    position: string;
+    svg: string;
+    pfp: Image;
+    logo: Image;
+    linkedin: string;
+    logolight: Image;
+    companyurl: string;
+  };
+}
+
+interface Image {
+  data: {
+    attributes: {
+      name: string;
+      mime: string;
+      width: number;
+      height: number;
+      url: string;
+    };
+  };
+}
+
+const fetchTestimonials = async (): Promise<StrapiResponse> => {
+  const response: Response = await fetch(`${appConfig.STRAPI_URL}/api/testimonials?populate=*`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${appConfig.STRAPI_TOKEN}`,
+    },
+  });
+  return (await response.json()) as StrapiResponse;
+};
+console.log(`${appConfig.STRAPI_URL}/api/works?populate=*`);
+const data = await fetchTestimonials();
+console.log(data);
+const testimonials = data.data.map((testimonial: Testimonial) => {
+  return {
+    id: testimonial.id,
+    company: testimonial.attributes.company,
+    content: testimonial.attributes.content,
+    name: testimonial.attributes.name,
+    position: testimonial.attributes.position,
+    svg: testimonial.attributes.svg,
+    pfp: testimonial.attributes.pfp.data.attributes.url,
+    logo: testimonial.attributes.logo.data.attributes.url,
+    linkedin: testimonial.attributes.linkedin,
+    logolight: testimonial.attributes.logolight.data.attributes.url,
+    companyurl: testimonial.attributes.companyurl,
+  };
+});
+---
+
+<section class="bg-gray-900 py-24 sm:py-32">
+  <div class="mx-auto block max-w-[100rem] px-6 lg:px-8">
+    <div class="mx-auto grid max-w-2xl grid-cols-1 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      {
+        testimonials.map((testimonial, i) => {
+          return (
+            <div
+              class={
+                i === 0
+                  ? 'flex flex-col pb-10 sm:pb-16 lg:pb-0 lg:pr-8 xl:pr-20'
+                  : 'flex flex-col border-t border-white/10 pt-10 sm:pt-16 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0 xl:pl-20 lg:pb-0 lg:pr-8 xl:pr-20 pb-10 sm:pb-16'
+              }
+            >
+              <img class="h-12 self-start block dark:hidden" src={testimonial.logo} alt="" />
+              <img class="h-12 self-start hidden dark:block" src={testimonial.logolight} alt="" />
+              <figure class="mt-10 flex flex-auto flex-col justify-between">
+                <blockquote class="leading-8 text-secondary dark:text-white">
+                  <p>“{testimonial.content}”</p>
+                </blockquote>
+                <figcaption class="mt-10 flex items-center gap-x-6">
+                  <a href={testimonial.linkedin}>
+                    {<img class="w-14 rounded-full bg-gray-800" src={testimonial.pfp} alt="" />}
+                  </a>
+                  <div class="text-base">
+                    <div class="font-semibold text-secondary dark:text-white">
+                      {testimonial.name}
+                    </div>
+                    <div class="mt-1 text-gray-400">
+                      {testimonial.position} @
+                      <Link url={testimonial.companyurl}>{testimonial.company}</Link>
+                    </div>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
