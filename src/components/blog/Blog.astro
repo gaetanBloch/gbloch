@@ -1,0 +1,88 @@
+---
+import { ghostClient } from "../../lib/ghost";
+
+const posts = await ghostClient.posts
+.browse({
+  limit: "all",
+})
+.catch(err => {
+  console.error(err);
+});
+
+---
+
+<div class='mx-auto max-w-7xl px-6 lg:px-8'>
+  <div class='mx-auto max-w-2xl lg:max-w-4xl'>
+    <div class='mt-16 space-y-20 lg:mt-20 lg:space-y-20'>
+      {
+        posts.map(post => (
+          <article class='relative isolate flex flex-col gap-8 lg:flex-row'>
+        <div
+          class='relative aspect-[16/9] sm:aspect-[2/1] lg:aspect-square lg:w-64 lg:shrink-0'>
+          <img
+            src={ post.feature_image }
+            alt={post.title}
+            class='absolute inset-0 h-full w-full rounded-2xl object-cover'
+          />
+          <div
+            class='absolute inset-0 rounded-2xl ring-1 ring-inset ring-secondary-lighter dark:ring-secondary'></div>
+        </div>
+        <div>
+          <div class='flex items-center gap-x-4'>
+            <time class='font-code'
+            >{ new Date(post.published_at).toLocaleDateString() }</time
+            >
+            {
+              JSON.parse(post.codeinjection_head)?.map(tag => (
+                <a
+                  href='#blog'
+                  class='relative z-10 font-code rounded-full bg-secondary-bright px-2 py-1 text-sm text-white hover:bg-secondary-lighter'
+                >
+                  { tag }
+                </a>
+              ))
+            }
+          </div>
+          <div class='text-sm mt-1'>
+            Read time: { post.reading_time } minutes
+          </div>
+          <div class='group relative max-w-xl'>
+            <h3
+              class='mt-3 text-xl font-semibold leading-6 text-gray-900 group-hover:text-gray-600'
+            >
+              <a href={ `/post/${ post.slug }` }>
+                <span class='absolute inset-0'></span>
+                { post.title }
+              </a>
+            </h3>
+            <p class='mt-5 text-sm leading-6 text-gray-600'>
+              { post.excerpt }
+            </p>
+          </div>
+          <div class='mt-6 flex border-t border-gray-900/5 pt-6'>
+            <div class='relative flex items-center gap-x-4'>
+              <img
+                src='https://res.cloudinary.com/dl6czsdel/image/upload/v1703061687/android-chrome-512x512_copy_vrpfml.png'
+                alt=''
+                class='h-10 w-10 rounded-full bg-gray-50'
+              />
+              <div class='text-sm leading-6'>
+                <p class='font-semibold text-gray-900'>
+                  <a href='#'>
+                    <span class='absolute inset-0'></span>
+                    Gaëtan Bloch
+                  </a>
+                </p>
+                <p class='text-gray-600'>CEO @GBloch</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+        ))
+      }
+      <!-- More posts... -->
+    </div>
+  </div>
+</div>
+

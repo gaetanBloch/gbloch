@@ -6,30 +6,30 @@ export interface Link {
 export const links: Link[] = [
   {
     i18nKey: 'header.home',
-    url: '#home',
+    url: '/#home',
   },
   {
     i18nKey: 'header.about',
-    url: '#about',
+    url: '/#about',
   },
   {
     i18nKey: 'header.work',
-    url: '#work',
+    url: '/#work',
   },
   {
     i18nKey: 'header.education',
-    url: '#education',
+    url: '/#education',
   },
   {
     i18nKey: 'header.blog',
-    url: '#blog',
+    url: '/#blog',
   },
   {
     i18nKey: 'header.testimonials',
-    url: '#testimonials',
+    url: '/#testimonials',
   },
   {
     i18nKey: 'header.contact',
-    url: '#contact',
+    url: '/#contact',
   },
 ];

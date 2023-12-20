@@ -47,9 +47,7 @@ const fetchWork = async (): Promise<StrapiResponse> => {
   });
   return (await response.json()) as StrapiResponse;
 };
-console.log(`${appConfig.STRAPI_URL}/api/works?populate=*`);
 const data = await fetchWork();
-console.log(data);
 const works = data.data.map((work: Work) => {
   return {
     id: work.id,
@@ -85,41 +83,52 @@ function getMonthDifference(startDate: Date, endDate: Date) {
         works.map((work: any) => {
           return (
             <li class="mb-10 ms-6">
-              <span class="absolute flex items-center justify-center w-8 h-8 bg-primary rounded-full -start-4 transition-all duration-75 ring-8 ring-background dark:ring-background-dark dark:bg-primary-bright">
-                <svg
-                  class="w-3 h-3"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="white"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                </svg>
-              </span>
-              <h3 class="flex flex-wrap mb-1 align-middle text-lg font-semibold dark:text-white flex-col sm:flex-row">
-                <Standout>{work.role}</Standout>
-                <span class="hidden sm:inline-flex">&nbsp;-&nbsp;</span>
-                <Link url={work.url}>{work.company}</Link>
-                <span class="hidden sm:inline-flex">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</span>
-                <span class="text-sm inline-flex items-center">{work.location}</span>
-                <span class="inline-flex w-fit bg-secondary-bright items-center text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-secondary-light sm:ms-3">
-                  Currently
+              <div>
+                <span class="absolute flex items-center justify-center w-8 h-8 bg-primary rounded-full -start-4 transition-all duration-75 ring-8 ring-background dark:ring-background-dark dark:bg-primary-bright">
+                  <svg
+                    class="w-3 h-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="white"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
                 </span>
-              </h3>
-              <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-                {work.startdate} ― {work.enddate}&nbsp;&nbsp;
-                <em>-&nbsp;&nbsp;{getMonthDifference(work.startdate, work.enddate)} months</em>
-              </time>
-              <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                {work.description}
-              </p>
-              {work.tags.map((tag: string) => {
-                return (
-                  <span class="inline-block mb-2 me-2 px-2.5 py-0.5 rounded-2xl bg-primary text-sm font-medium dark:bg-primary-bright text-[#fff]">
-                    {tag}
+                <h3 class="flex flex-wrap mb-1 align-middle text-lg font-semibold dark:text-white flex-col sm:flex-row">
+                  <Standout>{work.role}</Standout>
+                  <span class="hidden sm:inline-flex">&nbsp;-&nbsp;</span>
+                  <Link url={work.url}>{work.company}</Link>
+                  <span class="hidden sm:inline-flex">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+                  <span class="text-sm inline-flex items-center">{work.location}</span>
+                  <span class="inline-flex w-fit bg-secondary-bright items-center text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-secondary-light sm:ms-3">
+                    Currently
                   </span>
-                );
-              })}
+                </h3>
+                <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                  {work.startdate} ― {work.enddate}&nbsp;&nbsp;
+                  <em>-&nbsp;&nbsp;{getMonthDifference(work.startdate, work.enddate)} months</em>
+                </time>
+                <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                  {work.description}
+                </p>
+                {work.tags.map((tag: string) => {
+                  return (
+                    <span class="inline-block mb-2 me-2 px-2.5 py-0.5 rounded-2xl bg-primary text-sm font-medium dark:bg-primary-bright text-[#fff]">
+                      {tag}
+                    </span>
+                  );
+                })}
+              </div>
+              <div class="flex lg:absolute lg:left-[-8rem]">
+                <a href={work.url} target="_blank" rel="noopener noreferrer">
+                  <img
+                    class="h-30 max-w-[7rem] rounded-full mt-3 lg:mt-[-7rem]"
+                    src={work.logo}
+                    alt={work.company}
+                  />
+                </a>
+              </div>
             </li>
           );
         })

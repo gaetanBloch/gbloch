@@ -44,9 +44,7 @@ const fetchTestimonials = async (): Promise<StrapiResponse> => {
   });
   return (await response.json()) as StrapiResponse;
 };
-console.log(`${appConfig.STRAPI_URL}/api/works?populate=*`);
 const data = await fetchTestimonials();
-console.log(data);
 const testimonials = data.data.map((testimonial: Testimonial) => {
   return {
     id: testimonial.id,

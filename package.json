@@ -20,6 +20,7 @@
     "@astrojs/tailwind": "5.0.3",
     "@astrojs/vercel": "5.2.0",
     "@astropub/md": "^0.3.0",
+    "@tryghost/content-api": "^1.11.20",
     "@types/alpinejs": "3.13.5",
     "@types/node": "20.10.4",
     "alpinejs": "3.13.3",

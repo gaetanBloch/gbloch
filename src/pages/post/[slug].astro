@@ -1,0 +1,38 @@
+---
+import { ghostClient } from '../../lib/ghost';
+import AstroConfig from '../../../astro.config.mjs';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await ghostClient.posts
+    .browse({
+      limit: 'all',
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
+  return posts.map(post => {
+    return {
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post: post,
+      },
+    };
+  });
+}
+const { post } = Astro.props;
+
+const postContent = await ghostClient.posts.read(
+  { slug: post.slug },
+  { formats: ['html', 'plaintext'] },
+);
+const blogContent = { ...post, description: undefined };
+---
+
+<!doctype html>
+<BlogLayout content={blogContent}>
+  <Fragment set:html={postContent.html} />
+</BlogLayout>
