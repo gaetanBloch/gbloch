@@ -30,6 +30,14 @@ import Blog from './blog/Blog.astro';
     </h1>
     <Work />
   </section>
+   <section id="blog" class="flex flex-col items-center pt-20 xl:pt-36">
+    <h1
+      class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"
+    >
+      Blog
+    </h1>
+    <Blog />
+  </section>
   <section id="testimonials" class="flex flex-col items-center pt-10 xl:pt-20">
     <h1
       class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"
@@ -38,20 +46,6 @@ import Blog from './blog/Blog.astro';
     </h1>
     <Testimonials />
   </section>
-  <section id="blog" class="flex flex-col items-center pt-20 xl:pt-36">
-    <h1
-      class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"
-    >
-      Blog
-    </h1>
-    <Blog />
-  </section>
-  <!--<section id="work" class="flex justify-center h-screen">-->
-  <!--  <div class="text-4xl font-bold">My Work</div>-->
-  <!--</section>-->
-  <!--<section id="contact" class="flex justify-center h-screen">-->
-  <!--  <div class="text-4xl font-bold">Contact</div>-->
-  <!--</section>-->
 </div>
 
 <style lang="scss">
