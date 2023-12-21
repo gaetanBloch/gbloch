@@ -30,7 +30,7 @@ interface Logo {
 }
 
 const fetchSkills = async (): Promise<StrapiResponse> => {
-  const response: Response = await fetch(`${appConfig.STRAPI_URL}/api/skills?populate=*`, {
+  const response: Response = await fetch(`${appConfig.STRAPI_URL}/api/skills?populate=*&sort=index`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${appConfig.STRAPI_TOKEN}`,
@@ -136,66 +136,6 @@ const skills = data.data.map((skill: Skill) => {
                 <span class="absolute bottom-1 font-code">{skill.label}</span>
               </span>
               <span class="tech w-full h-full absolute rounded-md top-0 left-0" />
-            </span>
-          </a>
-          <a href={skill.url}>
-            <span class="flex p-0.5 relative rounded-md w-28 h-20 bg-gradient-to-tr from-secondary-light to-primary">
-              <span class="flex flex-col items-center align-middle justify-center h-full w-full bg-background dark:bg-background-dark rounded-md transition-[background] duration-300 relative">
-                <img
-                  class="absolute top-1/2 left-1/2 w-7 translate-x-[-50%] translate-y-[-70%]"
-                  src={skill.logo}
-                  alt={skill.label}
-                />
-                <span class="absolute bottom-1 font-code">{skill.label}</span>
-              </span>
-            </span>
-          </a>
-          <a href={skill.url}>
-            <span class="flex p-0.5 relative rounded-md w-28 h-20 bg-gradient-to-tr from-secondary-light to-primary">
-              <span class="flex flex-col items-center align-middle justify-center h-full w-full bg-background dark:bg-background-dark rounded-md transition-[background] duration-300 relative">
-                <img
-                  class="absolute top-1/2 left-1/2 w-7 translate-x-[-50%] translate-y-[-70%]"
-                  src={skill.logo}
-                  alt={skill.label}
-                />
-                <span class="absolute bottom-1 font-code">{skill.label}</span>
-              </span>
-            </span>
-          </a>
-          <a href={skill.url}>
-            <span class="flex p-0.5 relative rounded-md w-28 h-20 bg-gradient-to-tr from-secondary-light to-primary">
-              <span class="flex flex-col items-center align-middle justify-center h-full w-full bg-background dark:bg-background-dark rounded-md transition-[background] duration-300 relative">
-                <img
-                  class="absolute top-1/2 left-1/2 w-7 translate-x-[-50%] translate-y-[-70%]"
-                  src={skill.logo}
-                  alt={skill.label}
-                />
-                <span class="absolute bottom-1 font-code">{skill.label}</span>
-              </span>
-            </span>
-          </a>
-          <a href={skill.url}>
-            <span class="flex p-0.5 relative rounded-md w-28 h-20 bg-gradient-to-tr from-secondary-light to-primary">
-              <span class="flex flex-col items-center align-middle justify-center h-full w-full bg-background dark:bg-background-dark rounded-md transition-[background] duration-300 relative">
-                <img
-                  class="absolute top-1/2 left-1/2 w-7 translate-x-[-50%] translate-y-[-70%]"
-                  src={skill.logo}
-                  alt={skill.label}
-                />
-                <span class="absolute bottom-1 font-code">{skill.label}</span>
-              </span>
-            </span>
-          </a>
-          <a href={skill.url}>
-            <span class="flex p-0.5 relative rounded-md w-28 h-20 bg-gradient-to-tr from-secondary-light to-primary">
-              <span class="flex flex-col items-center align-middle justify-center h-full w-full bg-background dark:bg-background-dark rounded-md transition-[background] duration-300 relative">
-                <img
-                  class="absolute top-1/2 left-1/2 w-7 translate-x-[-50%] translate-y-[-70%]"
-                  src={skill.logo}
-                  alt={skill.label}
-                />
-                <span class="absolute bottom-1 font-code">{skill.label}</span>
-              </span>
             </span>
           </a>
         </>

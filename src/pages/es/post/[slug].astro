@@ -1,10 +1,10 @@
 ---
 import { changeLanguage } from "i18next";
-import { ghostClient } from "../../lib/ghost";
-import AstroConfig from "../../../astro.config.mjs";
-import BlogLayout from "../../layouts/BlogLayout.astro";
+import { ghostClient } from "../../../lib/ghost";
+import AstroConfig from "../../../../astro.config.mjs";
+import BlogLayout from "../../../layouts/BlogLayout.astro";
 
-changeLanguage("en");
+changeLanguage("es");
 
 export async function getStaticPaths() {
     const posts = await ghostClient.posts

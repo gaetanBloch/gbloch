@@ -22,6 +22,7 @@ interface Work {
     jsondescription: string;
     tags: string[];
     location: string;
+    type: string;
   };
 }
 
@@ -38,7 +39,7 @@ interface Logo {
 }
 
 const fetchWork = async (): Promise<StrapiResponse> => {
-  const response: Response = await fetch(`${appConfig.STRAPI_URL}/api/works?populate=*`, {
+  const response: Response = await fetch(`${appConfig.STRAPI_URL}/api/works?populate=*&sort=startdate:desc`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${appConfig.STRAPI_TOKEN}`,
@@ -61,19 +62,26 @@ const works = data.data.map((work: Work) => {
     jsondescription: work.attributes.jsondescription,
     tags: work.attributes.tags,
     location: work.attributes.location,
+    type: work.attributes.type,
   };
 });
 
-console.log(works[0].richdescription);
+console.log(works[0].type);
 
-function getMonthDifference(startDate: Date, endDate: Date) {
-  startDate = new Date(startDate);
-  endDate = new Date(endDate);
-  return (
-    endDate.getMonth() -
-    startDate.getMonth() +
-    12 * (endDate.getFullYear() - startDate.getFullYear())
-  );
+function getMonthDifference(startDate: string, endDate: string) {
+  const start = new Date(startDate);
+  let end;
+  if (endDate === '') end = new Date();
+  else end = new Date(endDate);
+  let years = end.getFullYear() - start.getFullYear();
+  let months = end.getMonth() - start.getMonth();
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+  let yearString = years > 1 ? ' years' : ' year';
+  let monthString = months > 1 ? ' months' : ' month';
+  return `${(years > 0 ? years +  yearString + (months > 0 ? ',' : '') : '')} ${(months > 0 ? months +  monthString : '')}`;
 }
 ---
 
@@ -96,35 +104,41 @@ function getMonthDifference(startDate: Date, endDate: Date) {
                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                   </svg>
                 </span>
-                <h3 class="flex flex-wrap mb-1 align-middle text-lg font-semibold dark:text-white flex-col sm:flex-row">
+                <h3 class="flex flex-wrap align-middle text-lg font-semibold dark:text-white flex-col sm:flex-row">
                   <Standout>{work.role}</Standout>
                   <span class="hidden sm:inline-flex">&nbsp;-&nbsp;</span>
                   <Link url={work.url}>{work.company}</Link>
                   <span class="hidden sm:inline-flex">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</span>
                   <span class="text-sm inline-flex items-center">{work.location}</span>
-                  <span class="inline-flex w-fit bg-secondary-bright items-center text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-secondary-light sm:ms-3">
-                    Currently
-                  </span>
+                  {
+                    work.enddate ? '' : <span class="inline-flex w-fit bg-secondary-bright items-center text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-secondary-light sm:ms-3">
+                      Currently
+                    </span>
+                  }
+                  <!--<span class="inline-flex w-fit bg-secondary-bright items-center text-white text-sm font-medium me-2 px-2.5 py-0.5 rounded-lg dark:bg-secondary-light sm:ms-3">-->
+                  <!--  Currently-->
+                  <!--</span>-->
                 </h3>
-                <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                <time class="block text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
                   {work.startdate} ― {work.enddate}&nbsp;&nbsp;
-                  <em>-&nbsp;&nbsp;{getMonthDifference(work.startdate, work.enddate)} months</em>
+                  <em>-&nbsp;&nbsp;{getMonthDifference(work.startdate, work.enddate)}</em>
                 </time>
-                <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                <span class='font-writing'>{work.type}</span>
+                <p class="-mt-3 mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
                   {work.richdescription !== '' ? markdown(work.richdescription) : work.description}
                 </p>
                 {work.tags.map((tag: string) => {
                   return (
-                    <span class="inline-block mb-2 me-2 px-2.5 py-0.5 rounded-2xl bg-primary text-sm font-medium dark:bg-primary-bright text-[#fff]">
+                    <span class="inline-block mb-2 mt-0.5 me-2 px-2.5 py-0.5 rounded-2xl font-code text-sm font-medium bg-secondary-bright text-[#fff]">
                       {tag}
                     </span>
                   );
                 })}
               </div>
-              <div class="flex lg:absolute lg:left-[-8rem]">
+              <div class="flex lg:absolute lg:left-[-10rem]">
                 <a href={work.url} target="_blank" rel="noopener noreferrer">
                   <img
-                    class="h-30 max-w-[7rem] max-h-[4rem] rounded-full mt-3 lg:mt-[-7rem]"
+                    class="h-30 max-w-[8.5rem] max-h-[5rem] mt-3 lg:mt-[-7rem]"
                     src={work.logo}
                     alt={work.company}
                   />
