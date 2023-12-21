@@ -32,6 +32,9 @@ importers:
       '@astropub/md':
         specifier: ^0.3.0
         version: 0.3.0(@astrojs/markdown-remark@3.5.0)
+      '@iconify/json':
+        specifier: ^2.2.160
+        version: 2.2.160
       '@tryghost/content-api':
         specifier: ^1.11.20
         version: 1.11.20
@@ -1399,6 +1402,17 @@ packages:
   /@humanwhocodes/object-schema@2.0.1:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
+
+  /@iconify/json@2.2.160:
+    resolution: {integrity: sha512-mjVikrD2ohux47NDrG22qzVBIf0BGS3W4HUZO3d+dnk7Sk3AYrmWVsGiMW6aoSGrBMIKAXpkLqCqgu57eu1oIw==}
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 1.1.1
+    dev: false
+
+  /@iconify/types@2.0.0:
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
+    dev: false
 
   /@jridgewell/gen-mapping@0.3.3:
     resolution: {integrity: sha512-HLhSWOLRi875zjjMG/r+Nv0oCW8umGb0BgEhyX3dDX3egwZtB8PqLnjz3yedt8R5StBrzcg4aBpnh8UA9D1BoQ==}
