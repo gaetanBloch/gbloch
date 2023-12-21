@@ -5,6 +5,7 @@ import About from './about/About.astro';
 import Work from './work/Work.astro';
 import Testimonials from './testimonials/Testimonials.astro';
 import Blog from './blog/Blog.astro';
+import Contact from "./contact/Contact.astro";
 ---
 
 <div>
@@ -22,6 +23,14 @@ import Blog from './blog/Blog.astro';
     </h1>
     <About />
   </section>
+  <!--<section id="education" class="flex flex-col items-center pt-20 xl:pt-36">-->
+  <!--  <h1-->
+  <!--    class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"-->
+  <!--  >-->
+  <!--    Education-->
+  <!--  </h1>-->
+  <!--  <Work />-->
+  <!--</section>-->
   <section id="work" class="flex flex-col items-center pt-20 xl:pt-36">
     <h1
       class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"
@@ -30,7 +39,7 @@ import Blog from './blog/Blog.astro';
     </h1>
     <Work />
   </section>
-   <section id="blog" class="flex flex-col items-center pt-20 xl:pt-36">
+  <section id="blog" class="flex flex-col items-center pt-20 xl:pt-36">
     <h1
       class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"
     >
@@ -38,13 +47,21 @@ import Blog from './blog/Blog.astro';
     </h1>
     <Blog />
   </section>
-  <section id="testimonials" class="flex flex-col items-center pt-10 xl:pt-20">
+  <section id="testimonials" class="flex flex-col items-center pt-20 xl:pt-36">
     <h1
       class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"
     >
       Testimonials
     </h1>
     <Testimonials />
+  </section>
+  <section id="contact" class="flex flex-col items-center pt-20 xl:pt-36">
+    <h2
+      class="text-lg font-writing md:text-2xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px] mb-5"
+    >
+      What's next?
+    </h2>
+    <Contact />
   </section>
 </div>
 

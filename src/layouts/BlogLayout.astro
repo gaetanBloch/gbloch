@@ -1,9 +1,7 @@
 ---
-import BaseLayout from "./Layout.astro";
-import {
-  getLocaleTime,
-} from "../utils/scripts";
-import { PostV2 } from "../types";
+import BaseLayout from './Layout.astro';
+import { getLocaleTime } from '../utils/scripts';
+import { PostV2 } from '../types';
 
 interface Props {
   content: PostV2;
@@ -16,70 +14,64 @@ const date = new Date(content.published_at);
 const datetime = date.toISOString();
 const postDate = getLocaleTime(date);
 
-const tags = ["programming", "tech", "github", "pull-request", "featured"];
+const tags = ['programming', 'tech', 'github', 'pull-request', 'featured'];
 ---
 
-<BaseLayout title={ content.title }>
-
-  <main class='overflow-x-hidden pt-24 sm:pt-36 gh-main'>
-    <article
-      class='gh-article post tag-programming tag-tech tag-github tag-pull-request featured'>
-      <header class='gh-canvas gh-article-header'>
-        <div class='flex gap-2'>
+<BaseLayout title={content.title}>
+  <main class="overflow-x-hidden pt-24 sm:pt-36 gh-main">
+    <article class="gh-article post tag-programming tag-tech tag-github tag-pull-request featured">
+      <header class="gh-canvas gh-article-header">
+        <div class="flex gap-2">
           {
             tags.map(tag => (
-              <a class='gh-article-tag' href='#'>
-                { tag }
+              <a class="gh-article-tag" href="#">
+                {tag}
               </a>
             ))
           }
         </div>
-        <h1 class='gh-article-title is-title text-[3rem]'>{ content.title }</h1>
-        <div class='gh-article-meta'>
-          <div class='gh-article-author-image'>
-            <a href='#'>
+        <h1 class="gh-article-title is-title text-[3rem]">{content.title}</h1>
+        <div class="gh-article-meta">
+          <div class="gh-article-author-image">
+            <a href="#">
               <img
-                class='author-profile-image w-24 flex mr-3'
-                src='https://res.cloudinary.com/dl6czsdel/image/upload/v1703061687/android-chrome-512x512_copy_vrpfml.png'
-                alt='Gaëtan Bloch'
+                class="author-profile-image w-24 flex mr-3"
+                src="https://res.cloudinary.com/dl6czsdel/image/upload/v1703061687/android-chrome-512x512_copy_vrpfml.png"
+                alt="Gaëtan Bloch"
               />
             </a>
-            <div class='gh-article-meta-wrappe'>
-              <h4 class='gh-article-author-name'>Gaëtan Bloch</h4>
-              <div class='gh-article-meta-content'>
-                <time
-                  class='gh-article-meta-date text-secondary dark:text-secondary-lighter'
-                >{ postDate }</time
+            <div class="gh-article-meta-wrappe">
+              <h4 class="gh-article-author-name">Gaëtan Bloch</h4>
+              <div class="gh-article-meta-content">
+                <time class="gh-article-meta-date text-secondary dark:text-secondary-lighter"
+                  >{postDate}</time
                 >
-                <span
-                  class='gh-article-meta-length text-secondary dark:text-secondary-lighter'
-                >
-                  <span class='bull'>-</span>
-                  { content.reading_time } min read
+                <span class="gh-article-meta-length text-secondary dark:text-secondary-lighter">
+                  <span class="bull">-</span>
+                  {content.reading_time} min read
                 </span>
               </div>
             </div>
           </div>
           <span
-            class='flex flex-col sm:gap-y-2 md:flex-row md:items-center md:gap-y-0 md:divide-x md:divide-textColor'
+            class="flex flex-col sm:gap-y-2 md:flex-row md:items-center md:gap-y-0 md:divide-x md:divide-textColor"
           >
           </span>
         </div>
-        <figure class='gh-article-image'>
-          <img src={ content.feature_image } />
+        <figure class="gh-article-image">
+          <img src={content.feature_image} />
           <figcaption>
-            <Fragment set:html={ content.feature_image_caption } />
+            <Fragment set:html={content.feature_image_caption} />
           </figcaption>
         </figure>
       </header>
-      <section class='gh-content gh-canvas is-body'>
+      <section class="gh-content gh-canvas is-body">
         <slot />
       </section>
     </article>
   </main>
 
   <style is:inline>
-
     /* ------------------------------------------------------------
 
     This is a development CSS file which is built to a minified
@@ -143,17 +135,16 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       --color-secondary-text: rgb(0 0 0 / 0.5);
       --color-border: rgb(0 0 0 / 0.08);
       --color-dark-border: rgb(0 0 0 / 0.5);
-      --font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      --font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       --font-serif: 'EB Garamond', Georgia, Times, serif;
       --font-serif-alt: Georgia, Times, serif;
       --font-mono: 'JetBrains Mono', Menlo, Consolas, Monaco, 'Liberation Mono', 'Lucida Console',
-      monospace;
+        monospace;
       --container-width: 1320px;
       --container-gap: clamp(24px, 1.7032rem + 1.9355vw, 48px);
       --grid-gap: 42px;
     }
-
 
     /* 3. Resets
   /* ---------------------------------------------------------- */
@@ -173,7 +164,7 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     }
 
     body {
-      @apply preload font-primary text-secondary bg-background dark:text-secondary-lighter dark:bg-background-dark box-border h-screen;
+      @apply preload box-border h-screen bg-background font-primary text-secondary dark:bg-background-dark dark:text-secondary-lighter;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -486,11 +477,11 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
 
       display: grid;
       grid-template-columns:
-      [full-start] var(--full)
-      [wide-start] var(--wide)
-      [main-start] var(--main) [main-end]
-      var(--wide) [wide-end]
-      var(--full) [full-end];
+        [full-start] var(--full)
+        [wide-start] var(--wide)
+        [main-start] var(--main) [main-end]
+        var(--wide) [wide-end]
+        var(--full) [full-end];
     }
 
     .gh-canvas > * {
@@ -774,11 +765,13 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       visibility: hidden;
       background-color: #fff;
       border-radius: 5px;
-      box-shadow: 0 0 0 1px rgb(0 0 0 / 0.04),
-      0 7px 20px -5px rgb(0 0 0 / 0.15);
+      box-shadow:
+        0 0 0 1px rgb(0 0 0 / 0.04),
+        0 7px 20px -5px rgb(0 0 0 / 0.15);
       opacity: 0;
-      transition: opacity 0.3s,
-      transform 0.2s;
+      transition:
+        opacity 0.3s,
+        transform 0.2s;
       transform: translate3d(0, 6px, 0);
     }
 
@@ -946,8 +939,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
 
       .is-open#gh-navigation .nav li {
         opacity: 1;
-        transition: transform 0.2s,
-        opacity 0.2s;
+        transition:
+          transform 0.2s,
+          opacity 0.2s;
         transform: translateY(0);
       }
 
@@ -965,8 +959,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
 
       .is-open#gh-navigation :is(.gh-button, a[data-portal='signin']) {
         opacity: 1;
-        transition: transform 0.4s,
-        opacity 0.4s;
+        transition:
+          transform 0.4s,
+          opacity 0.4s;
         transition-delay: 0.2s;
         transform: translateY(0);
       }
@@ -1139,7 +1134,10 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       margin-top: 14px;
     }
 
-    .gh-header.is-magazine :is(.gh-header-left, .gh-header-right) .gh-card:last-child .gh-card-image {
+    .gh-header.is-magazine
+      :is(.gh-header-left, .gh-header-right)
+      .gh-card:last-child
+      .gh-card-image {
       display: none;
     }
 
@@ -1665,7 +1663,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     }
 
     .gh-navigation + .gh-container .gh-container-title,
-    :is(.paged, .tag-template, .author-template) .gh-container:not(.has-sidebar) .gh-container-title {
+    :is(.paged, .tag-template, .author-template)
+      .gh-container:not(.has-sidebar)
+      .gh-container-title {
       display: none;
     }
 
@@ -1734,8 +1734,8 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     }
 
     .gh-header:is(.is-highlight, .is-magazine)
-    ~ .gh-container.is-grid:not(.has-sidebar)
-    :is(.gh-container-title, .gh-main, .gh-more) {
+      ~ .gh-container.is-grid:not(.has-sidebar)
+      :is(.gh-container-title, .gh-main, .gh-more) {
       grid-column: 1 / -1;
     }
 
@@ -2184,8 +2184,8 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
 
     /* Remove space between full-width cards */
     .gh-content
-    > .kg-width-full
-    + .kg-width-full:not(.kg-width-full.kg-card-hascaption + .kg-width-full) {
+      > .kg-width-full
+      + .kg-width-full:not(.kg-width-full.kg-card-hascaption + .kg-width-full) {
       margin-top: 0;
     }
 
@@ -2278,12 +2278,14 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       border-spacing: 0;
       border-collapse: collapse;
       -webkit-overflow-scrolling: touch;
-      background: radial-gradient(ellipse at left, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0) 75%) 0 center,
-      radial-gradient(ellipse at right, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0) 75%) 100% center;
+      background:
+        radial-gradient(ellipse at left, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0) 75%) 0 center,
+        radial-gradient(ellipse at right, rgb(0 0 0 / 0.2) 0%, rgb(0 0 0 / 0) 75%) 100% center;
       background-repeat: no-repeat;
       background-attachment: scroll, scroll;
-      background-size: 10px 100%,
-      10px 100%;
+      background-size:
+        10px 100%,
+        10px 100%;
     }
 
     .gh-content table:not(.gist table) td:first-child {
@@ -2297,7 +2299,11 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     }
 
     .gh-content table:not(.gist table) td:last-child {
-      background-image: linear-gradient(to left, rgb(255 255 255 / 1) 50%, rgb(255 255 255 / 0) 100%);
+      background-image: linear-gradient(
+        to left,
+        rgb(255 255 255 / 1) 50%,
+        rgb(255 255 255 / 0) 100%
+      );
       background-repeat: no-repeat;
       background-position: 100% 0;
       background-size: 20px 100%;
@@ -3079,9 +3085,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     }
 
     @media (-webkit-min-device-pixel-ratio: 1.1),
-    (-webkit-min-device-pixel-ratio: 1.09375),
-    (min-resolution: 105dpi),
-    (min-resolution: 1.1dppx) {
+      (-webkit-min-device-pixel-ratio: 1.09375),
+      (min-resolution: 105dpi),
+      (min-resolution: 1.1dppx) {
       .pswp--svg .pswp__button,
       .pswp--svg .pswp__button--arrow--left::before,
       .pswp--svg .pswp__button--arrow--right::before {
@@ -3624,8 +3630,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       cursor: pointer;
       background: #fff;
       border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08),
-      0 1px 4px rgba(0, 0, 0, 0.24);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.24);
     }
 
     .kg-audio-player-container input[type='range']:active::-webkit-slider-thumb {
@@ -3653,8 +3660,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       cursor: pointer;
       background: #fff;
       border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08),
-      0 1px 4px rgba(0, 0, 0, 0.24);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.24);
     }
 
     .kg-audio-player-container input[type='range']:active::-moz-range-thumb {
@@ -3686,8 +3694,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       cursor: pointer;
       background: #fff;
       border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08),
-      0 1px 4px rgba(0, 0, 0, 0.24);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.24);
     }
 
     .kg-audio-player-container input[type='range']:active::-ms-thumb {
@@ -3861,7 +3870,7 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       height: 2.4em;
       line-height: 1em;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       font-size: 0.95em;
       font-weight: 600;
       text-decoration: none;
@@ -4489,7 +4498,7 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       border-radius: 3px;
       outline: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       font-size: 1.05em;
       font-weight: 600;
       line-height: 1em;
@@ -4726,7 +4735,7 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     }
 
     .kg-header-card.kg-width-full
-    .kg-header-card-subheading:not(.kg-layout-split .kg-header-card-subheading) {
+      .kg-header-card-subheading:not(.kg-layout-split .kg-header-card-subheading) {
       max-width: min(65vmax, 1200px);
       font-size: clamp(1.05em, 2vw, 2.4rem);
     }
@@ -4801,12 +4810,12 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       }
 
       .kg-header-card.kg-width-full
-      .kg-header-card-subheading:not(.kg-layout-split .kg-header-card-subheading) {
+        .kg-header-card-subheading:not(.kg-layout-split .kg-header-card-subheading) {
         max-width: unset;
       }
 
       .kg-header-card-content
-      .kg-header-card-image:not(.kg-content-wide .kg-header-card-content .kg-header-card-image) {
+        .kg-header-card-image:not(.kg-content-wide .kg-header-card-content .kg-header-card-image) {
         height: auto;
         min-height: unset;
         aspect-ratio: 1/1;
@@ -4851,11 +4860,12 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       flex-direction: column;
       text-decoration: none;
       font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'helvetica neue',
-      helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+        helvetica, ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
       font-size: 14px;
       font-weight: 400;
-      box-shadow: 0 2px 6px -2px rgb(0 0 0/10%),
-      0 0 1px rgb(0 0 0/40%);
+      box-shadow:
+        0 2px 6px -2px rgb(0 0 0/10%),
+        0 0 1px rgb(0 0 0/40%);
       width: 100%;
       max-width: 512px;
       color: #222;
@@ -4958,7 +4968,7 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
 
     .kg-product-card h4.kg-product-card-title {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       text-decoration: none;
       font-weight: 700;
       font-size: 1.4em;
@@ -4975,7 +4985,7 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     .kg-product-card .kg-product-card-description p,
     .kg-product-card .kg-product-card-description ul {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       font-size: 0.95em;
       line-height: 1.5em;
       opacity: 0.7;
@@ -5038,7 +5048,7 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       position: static;
       align-items: center;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-      'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+        'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
       font-size: 0.95em;
       font-weight: 600;
       line-height: 1em;
@@ -5177,7 +5187,7 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     }
 
     .kg-signup-card.kg-width-full
-    .kg-signup-card-subheading:not(.kg-layout-split .kg-signup-card-subheading) {
+      .kg-signup-card-subheading:not(.kg-layout-split .kg-signup-card-subheading) {
       max-width: min(65vmax, 1200px);
       font-size: clamp(1.05em, 2vw, 2.4rem);
     }
@@ -5347,12 +5357,12 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       }
 
       .kg-signup-card.kg-width-full
-      .kg-signup-card-subheading:not(.kg-layout-split .kg-signup-card-subheading) {
+        .kg-signup-card-subheading:not(.kg-layout-split .kg-signup-card-subheading) {
         max-width: unset;
       }
 
       .kg-signup-card-content
-      .kg-signup-card-image:not(.kg-content-wide .kg-signup-card-content .kg-signup-card-image) {
+        .kg-signup-card-image:not(.kg-content-wide .kg-signup-card-content .kg-signup-card-image) {
         height: auto;
         min-height: unset;
         aspect-ratio: 1/1;
@@ -5397,8 +5407,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     .kg-toggle-card[data-kg-toggle-state='close'] .kg-toggle-content {
       height: 0;
       overflow: hidden;
-      transition: opacity 0.5s ease,
-      top 0.35s ease;
+      transition:
+        opacity 0.5s ease,
+        top 0.35s ease;
       opacity: 0;
       top: -0.5em;
       position: relative;
@@ -5407,8 +5418,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
     .kg-toggle-content {
       height: auto;
       opacity: 1;
-      transition: opacity 1s ease,
-      top 0.35s ease;
+      transition:
+        opacity 1s ease,
+        top 0.35s ease;
       top: 0;
       position: relative;
     }
@@ -5719,8 +5731,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       cursor: pointer;
       background: #fff;
       border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08),
-      0 1px 4px rgba(0, 0, 0, 0.24);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.24);
     }
 
     .kg-video-card input[type='range']:active::-webkit-slider-thumb {
@@ -5748,8 +5761,9 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       cursor: pointer;
       background: #fff;
       border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08),
-      0 1px 4px rgba(0, 0, 0, 0.24);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.24);
     }
 
     .kg-video-card input[type='range']:active::-moz-range-thumb {
@@ -5781,14 +5795,13 @@ const tags = ["programming", "tech", "github", "pull-request", "featured"];
       cursor: pointer;
       background: #fff;
       border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08),
-      0 1px 4px rgba(0, 0, 0, 0.24);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.08),
+        0 1px 4px rgba(0, 0, 0, 0.24);
     }
 
     .kg-video-card input[type='range']:active::-ms-thumb {
       transform: scale(1.2);
     }
   </style>
-
 </BaseLayout>
-
