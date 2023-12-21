@@ -4,6 +4,7 @@ import Social from './social/Social.astro';
 import Link from '../links/Link.astro';
 import Trans from '../header/language-selector/Trans.astro';
 import Button from '../buttons/Button.astro';
+import { Icon } from 'astro-icon'
 ---
 
 <div class="flex flex-col w-full sm:items-start p-5">
@@ -38,7 +39,7 @@ import Button from '../buttons/Button.astro';
   <div class="flex justify-center mt-10">
     <Social />
   </div>
-  <div class="flex justify-center w-full mt-10">
+  <div class="flex justify-center w-full mt-10 gap-5">
     <a href="#about">
       <Button>
         View my work
@@ -55,6 +56,14 @@ import Button from '../buttons/Button.astro';
             d="M11.293 5.707l5.293 5.293h-11.586c-0.552 0-1 0.448-1 1s0.448 1 1 1h11.586l-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l7-7c0.092-0.092 0.166-0.202 0.217-0.324 0.101-0.245 0.101-0.521 0-0.766-0.049-0.118-0.121-0.228-0.217-0.324l-7-7c-0.391-0.391-1.024-0.391-1.414 0s-0.391 1.024 0 1.414z"
           ></path>
         </svg>
+      </Button>
+    </a>
+    <a href="https://github.com/gaetanBloch/gbloch">
+      <Button>
+        <span class='inline-flex flex-wrap relative '>
+          <Icon name='mdi:git' class='top-0.5 left-0 w-6 h-6 absolute'/>
+          <span class='ml-8'>Fork this repository on GitHub</span>
+        </span>
       </Button>
     </a>
   </div>
