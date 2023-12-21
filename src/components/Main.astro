@@ -5,13 +5,14 @@ import About from './about/About.astro';
 import Work from './work/Work.astro';
 import Testimonials from './testimonials/Testimonials.astro';
 import Blog from './blog/Blog.astro';
-import Contact from "./contact/Contact.astro";
+import Contact from './contact/Contact.astro';
+import Education from './education/Education.astro';
 ---
 
 <div>
   <section
     id="home"
-    class="h-screen w-screen grid pt-20 md:pt-28 lg:pt-36 md:mt-5 lg:mt-20 xl:mt-32 2xl:mt-56 md:px-32 lg:px-52 xl:px-96 2xl:px-[40rem]"
+    class="h-screen w-screen grid pt-20 md:pt-28 lg:pt-36 md:mt-5 lg:mt-20 xl:mt-32 2xl:mt-56 md:px-32 lg:px-52 xl:px-96 2xl:px-[30rem]"
   >
     <Home />
   </section>
@@ -23,14 +24,6 @@ import Contact from "./contact/Contact.astro";
     </h1>
     <About />
   </section>
-  <!--<section id="education" class="flex flex-col items-center pt-20 xl:pt-36">-->
-  <!--  <h1-->
-  <!--    class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"-->
-  <!--  >-->
-  <!--    Education-->
-  <!--  </h1>-->
-  <!--  <Work />-->
-  <!--</section>-->
   <section id="work" class="flex flex-col items-center pt-20 xl:pt-36">
     <h1
       class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"
@@ -38,6 +31,14 @@ import Contact from "./contact/Contact.astro";
       Work
     </h1>
     <Work />
+  </section>
+  <section id="education" class="flex flex-col items-center pt-20 xl:pt-36">
+    <h1
+      class="text-lg font-writing md:text-4xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px]"
+    >
+      Education
+    </h1>
+    <Education />
   </section>
   <section id="blog" class="flex flex-col items-center pt-20 xl:pt-36">
     <h1
@@ -55,7 +56,7 @@ import Contact from "./contact/Contact.astro";
     </h1>
     <Testimonials />
   </section>
-  <section id="contact" class="flex flex-col items-center pt-20 xl:pt-36">
+  <section id="contact" class="flex flex-col items-center">
     <h2
       class="text-lg font-writing md:text-2xl font-bold after:bg-secondary dark:after:bg-secondary-light after:top-[15px] md:after:top-[23px] mb-5"
     >

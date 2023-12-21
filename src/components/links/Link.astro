@@ -9,9 +9,10 @@ interface Props {
 const { i18nKey, url } = Astro.props;
 ---
 
-<a href={url} class="inline-flex font-black text-primary-light">{t(i18nKey)}<slot /></a>
+<a href={url} class="inline-flex font-black text-primary-light" target='_blank' rel="noreferrer noopener">{t(i18nKey)}<slot /></a>
 
 <style>
+
   a {
     border-bottom-width: 0;
     background-image: linear-gradient(transparent, transparent),

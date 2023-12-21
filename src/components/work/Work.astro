@@ -1,5 +1,4 @@
 ---
-import Avatar from '../avatar/me-office.svg?raw';
 import Link from '../links/Link.astro';
 import Standout from '../standout/Standout.astro';
 import appConfig from '../../appConfig';
@@ -65,6 +64,8 @@ const works = data.data.map((work: Work) => {
   };
 });
 
+console.log(works[0].richdescription);
+
 function getMonthDifference(startDate: Date, endDate: Date) {
   startDate = new Date(startDate);
   endDate = new Date(endDate);
@@ -110,7 +111,7 @@ function getMonthDifference(startDate: Date, endDate: Date) {
                   <em>-&nbsp;&nbsp;{getMonthDifference(work.startdate, work.enddate)} months</em>
                 </time>
                 <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                  {work.description}
+                  {work.richdescription !== '' ? markdown(work.richdescription) : work.description}
                 </p>
                 {work.tags.map((tag: string) => {
                   return (
@@ -123,7 +124,7 @@ function getMonthDifference(startDate: Date, endDate: Date) {
               <div class="flex lg:absolute lg:left-[-8rem]">
                 <a href={work.url} target="_blank" rel="noopener noreferrer">
                   <img
-                    class="h-30 max-w-[7rem] rounded-full mt-3 lg:mt-[-7rem]"
+                    class="h-30 max-w-[7rem] max-h-[4rem] rounded-full mt-3 lg:mt-[-7rem]"
                     src={work.logo}
                     alt={work.company}
                   />

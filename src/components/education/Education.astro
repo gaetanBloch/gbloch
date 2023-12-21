@@ -1,0 +1,140 @@
+---
+import Link from '../links/Link.astro';
+import Standout from '../standout/Standout.astro';
+import appConfig from '../../appConfig';
+import { markdown } from '@astropub/md';
+
+interface StrapiResponse {
+  data: Education[];
+}
+
+interface Education {
+  id: string;
+  attributes: {
+    institution: string;
+    startsate: Date;
+    enddate: Date;
+    degree: string;
+    website: string;
+    logo: Logo;
+    honors: string;
+    activities: string;
+    description: string;
+    location: string;
+  };
+}
+
+interface Logo {
+  data: {
+    attributes: {
+      name: string;
+      mime: string;
+      width: number;
+      height: number;
+      url: string;
+    };
+  };
+}
+
+const fecthEducation = async (): Promise<StrapiResponse> => {
+  const response: Response = await fetch(`${appConfig.STRAPI_URL}/api/educations?populate=*&sort=enddate:desc`, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${appConfig.STRAPI_TOKEN}`,
+    },
+  });
+  return (await response.json()) as StrapiResponse;
+};
+const data = await fecthEducation();
+const educations = data.data.map((education: Education) => {
+  return {
+    id: education.id,
+    institution: education.attributes.institution,
+    startdate: education.attributes.startsate,
+    enddate: education.attributes.enddate,
+    degree: education.attributes.degree,
+    website: education.attributes.website,
+    logo: education.attributes.logo.data.attributes.url,
+    honors: education.attributes.honors,
+    activities: education.attributes.activities,
+    description: education.attributes.description,
+    location: education.attributes.location,
+  };
+});
+
+function getYear(date: Date) {
+  date = new Date(date);
+  return date.getFullYear();
+}
+---
+
+<div class="relative flex flex-col sm:flex-row w-[90%] lg:w-1/3">
+  <div class="p-5">
+    <ol class="relative border-s border-secondary dark:border-secondary-light">
+      {
+        educations.map((education: Education) => {
+          return (
+            <li class="mb-10 ms-6">
+              <div>
+                <span class="absolute flex items-center justify-center w-8 h-8 bg-secondary rounded-full -start-4 transition-all duration-75 ring-8 ring-background dark:ring-background-dark dark:bg-secondary-bright">
+                  <svg
+                    class="w-3 h-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="white"
+                    viewBox="0 0 20 20"
+                  >
+                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                  </svg>
+                </span>
+                <h3 class="flex flex-wrap mb-1 align-middle text-lg font-semibold dark:text-white flex-col sm:flex-row">
+                  <Standout>{education.degree}</Standout>
+                  <span class="hidden sm:inline-flex">&nbsp;-&nbsp;</span>
+                  <Link url={education.website}>{education.institution}</Link>
+                  <span class="hidden sm:inline-flex">&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;</span>
+                  <span class="text-sm inline-flex items-center">{education.location}</span>
+                </h3>
+                <time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
+                  {getYear(education.startdate)} ― {getYear(education.enddate)}&nbsp;&nbsp;
+                </time>
+                <Standout>
+                  <b class="text-primary dark:text-primary-light">{education.honors}</b>
+                </Standout>
+                <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                  {markdown(education.description)}
+                </p>
+                <p class="ed-description mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
+                  {markdown(education.activities)}
+                </p>
+              </div>
+              <div class="flex lg:absolute lg:left-[-8rem]">
+                <a href={education.website} target="_blank" rel="noopener noreferrer">
+                  <img
+                    class="h-30 max-w-[7rem] max-h-[4rem] rounded-full mt-3 lg:mt-[-7rem]"
+                    src={education.logo}
+                    alt={education.institution}
+                  />
+                </a>
+              </div>
+            </li>
+          );
+        })
+      }
+    </ol>
+  </div>
+</div>
+
+<style lang='scss'>
+  :global(li p a) {
+    @apply text-secondary-bright hover:underline;
+  }
+
+  :global(li li a) {
+    @apply text-secondary-bright hover:underline;
+  }
+
+  :global(li li ) {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+</style>
