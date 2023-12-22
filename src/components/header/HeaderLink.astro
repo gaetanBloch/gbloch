@@ -8,10 +8,9 @@ interface Props {
 
 const { name, bold, horizontal = true, url = '#' } = Astro.props;
 ---
-
 <a
   href={url}
-  class={'relative no-underline select-none focus:outline-none before:bg-primary-light dark:before:bg-primary-light ' +
+  class={'nav relative no-underline select-none focus:outline-none before:bg-primary-light dark:before:bg-primary-light ' +
     (horizontal ? 'horizontal' : 'vertical')}
 >
   {name}

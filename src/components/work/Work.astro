@@ -69,9 +69,10 @@ const works = data.data.map((work: Work) => {
 console.log(works[0].type);
 
 function getMonthDifference(startDate: string, endDate: string) {
+  console.log(startDate, endDate);
   const start = new Date(startDate);
   let end;
-  if (endDate === '') end = new Date();
+  if (!endDate) end = new Date();
   else end = new Date(endDate);
   let years = end.getFullYear() - start.getFullYear();
   let months = end.getMonth() - start.getMonth();
@@ -79,9 +80,9 @@ function getMonthDifference(startDate: string, endDate: string) {
     years--;
     months += 12;
   }
-  let yearString = years > 1 ? ' years' : ' year';
-  let monthString = months > 1 ? ' months' : ' month';
-  return `${(years > 0 ? years +  yearString + (months > 0 ? ',' : '') : '')} ${(months > 0 ? months +  monthString : '')}`;
+  let yearString = years > 1 ? " years" : " year";
+  let monthString = months > 1 ? " months" : " month";
+  return `${ (years > 0 ? years + yearString + (months > 0 ? "," : "") : "") } ${ (months > 0 ? months + monthString : "") }`;
 }
 ---
 
@@ -120,7 +121,7 @@ function getMonthDifference(startDate: string, endDate: string) {
                   <!--</span>-->
                 </h3>
                 <time class="block text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-                  {work.startdate} ― {work.enddate}&nbsp;&nbsp;
+                  {work.startdate} ― {work.enddate === null ? 'Present' : work.enddate}&nbsp;&nbsp;
                   <em>-&nbsp;&nbsp;{getMonthDifference(work.startdate, work.enddate)}</em>
                 </time>
                 <span class='font-writing'>{work.type}</span>
