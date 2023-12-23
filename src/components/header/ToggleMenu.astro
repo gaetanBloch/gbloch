@@ -45,7 +45,7 @@ const {
 <script>
   import { attachEvent } from "../../utils/scripts";
 
-  attachEvent("a.nav", "click", function() {
+  attachEvent("a.nav:not(.horizontal)", "click", function() {
     document.querySelector("[data-toggle-menu]")?.classList.toggle("expanded");
     document.body.classList.toggle("overflow-hidden");
     document.getElementById("header")?.classList.toggle("h-screen");
